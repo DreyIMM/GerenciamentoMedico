@@ -12,14 +12,15 @@ import javax.persistence.Id;
 
 @Entity
 public class Cliente implements Serializable{
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
 	private String Nome;
-	private Long Cpf;
-	private int NumCarteirinha;
+	private int Cpf;
+	private int Carteirinha;
 	
 	@ManyToOne
  	@JoinColumn(name = "categoriaPlano_id")
@@ -29,11 +30,11 @@ public class Cliente implements Serializable{
 	
 	
 	
-	public Cliente(Long id, String nome, Long cpf, int numCarteirinha, Categoria categoria) {
+	public Cliente(Long id, String nome, int cpf, int numCarteirinha, Categoria categoria) {
 		Id = id;
 		Nome = nome;
 		Cpf = cpf;
-		NumCarteirinha = numCarteirinha;
+		Carteirinha = numCarteirinha;
 		Categoria = categoria;
 	}
 	
@@ -50,17 +51,17 @@ public class Cliente implements Serializable{
 	public void setNome(String nome) {
 		Nome = nome;
 	}
-	public Long getCpf() {
+	public int getCpf() {
 		return Cpf;
 	}
-	public void setCpf(Long cpf) {
+	public void setCpf(int cpf) {
 		Cpf = cpf;
 	}
 	public int getNumCarteirinha() {
-		return NumCarteirinha;
+		return Carteirinha;
 	}
 	public void setNumCarteirinha(int numCarteirinha) {
-		NumCarteirinha = numCarteirinha;
+		Carteirinha = numCarteirinha;
 	}
 	public Categoria getCategoria() {
 		return Categoria;

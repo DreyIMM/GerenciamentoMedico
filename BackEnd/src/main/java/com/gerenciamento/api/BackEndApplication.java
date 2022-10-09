@@ -7,8 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.gerenciamento.api.Models.Categoria;
 import com.gerenciamento.api.Models.Cliente;
+import com.gerenciamento.api.Models.Medico;
 import com.gerenciamento.api.repository.CategoriaRepository;
 import com.gerenciamento.api.repository.ClienteRepository;
+import com.gerenciamento.api.repository.MedicoRepository;
 
 @SpringBootApplication
 public class BackEndApplication implements CommandLineRunner{
@@ -19,6 +21,8 @@ public class BackEndApplication implements CommandLineRunner{
 	@Autowired
 	private ClienteRepository clienterepository;
 	
+	@Autowired
+	private MedicoRepository medicorepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(BackEndApplication.class, args);
@@ -41,6 +45,13 @@ public class BackEndApplication implements CommandLineRunner{
 		clienterepository.save(p2);
 		clienterepository.save(p3);
 		clienterepository.save(p4);
+		
+		Medico m1 = new Medico(3001L, "Dr Ruberval Mendes");
+		Medico m2 = new Medico(3002L, "Dr Alan Carvalho");
+
+		medicorepository.save(m1);
+		medicorepository.save(m2);
+		
 	}
 
 }

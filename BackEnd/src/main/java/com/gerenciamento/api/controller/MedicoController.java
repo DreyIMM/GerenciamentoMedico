@@ -14,36 +14,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gerenciamento.api.Models.Categoria;
+import com.gerenciamento.api.Models.Medico;
 import com.gerenciamento.api.repository.CategoriaRepository;
+import com.gerenciamento.api.repository.MedicoRepository;
 
 @RestController
-@RequestMapping(value = "/categoria")
-public class CategoriaController {
+@RequestMapping(value = "/medico")
+public class MedicoController {
 	@Autowired
-	private final CategoriaRepository _repository;
+	private final MedicoRepository _repository;
 	
-	public CategoriaController(CategoriaRepository repository) {
+	public MedicoController(MedicoRepository repository) {
 		_repository = repository;
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<Categoria>> findAll(){
-		List<Categoria> lista = _repository.findAll();	
+	public ResponseEntity<List<Medico>> findAll(){
+		List<Medico> lista = _repository.findAll();	
 		return ResponseEntity.ok(lista);
 	}
 	
 	
 	@PostMapping
-	Categoria novaCategoria(@RequestBody Categoria novaCategoria) {
-		return _repository.save(novaCategoria);
+	Medico novoMedico(@RequestBody Medico novoMedico) {
+		return _repository.save(novoMedico);
 	}
-	
-	//Observse: cuidado que ao excluir um plano, pode ter clientes vinculados(Solução)
-	@DeleteMapping("/{id}")
-	  void excluirCategoria(@PathVariable Long id) {
-		_repository.deleteById(id);
-		_repository.findAll();
-	  }
-	
 	
 }

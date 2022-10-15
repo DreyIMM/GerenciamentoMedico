@@ -1,0 +1,53 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Planos</h1>
+    <button type="button" class="btn btn-primary sm" data-toggle="modal" data-target="#exampleModal">
+        Cadastrar
+    </button>
+</div>
+<div class="row">             
+    <div class="">
+        <div class="card shadow mb-4">
+            <div>
+                <table class="table table-sm m-2">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Ações</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let categoria of categorias">
+                        <td>{{categoria.id}}</td>
+                        <td>{{categoria.nome}}</td>
+                        <td><button class="btn btn-secondary btn-sm">Editar</button> <button class="m-1 btn-sm btn btn-primary">Excluir</button></td>
+                      </tr>
+                    </tbody>
+                  </table>                
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Dialog Modal-->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+</div>
+<script defer src="./assets/js/Script.js"></script>

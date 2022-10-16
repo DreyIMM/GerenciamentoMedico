@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { CategoriaService } from './categoria/categoria.service';
-import { DadosCategoriaComponent } from './dados-categoria/dados-categoria.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { FooterComponent } from './footer/footer.component';
@@ -16,7 +15,6 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     CategoriaComponent,
-    DadosCategoriaComponent,
     NavbarComponent,
     SideBarComponent,
     FooterComponent

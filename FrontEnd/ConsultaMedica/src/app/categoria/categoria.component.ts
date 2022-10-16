@@ -1,5 +1,6 @@
 import { ArrayType } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { CategoriaModel } from './categoria.models';
 import { CategoriaService } from './categoria.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { CategoriaService } from './categoria.service';
   styleUrls: ['./categoria.component.css']
 })
 export class CategoriaComponent implements OnInit {
-
+  categoria: CategoriaModel= new CategoriaModel;
   categorias: Array<any> = new Array();
 
   constructor(private categoriaService: CategoriaService) { 
@@ -27,5 +28,14 @@ export class CategoriaComponent implements OnInit {
         console.log("erro ao listar as categorias", err);
     })
   }
+
+  cadastrarCategoria(){
+    this.categoriaService.CadastrarCategoria(this.categoria).subscribe(categoria =>{
+    this.categoria = new CategoriaModel();
+    this.listarCategorias();
+    }, err =>{
+      console.log('Error ao cadastrar o aluno', err)
+    })
+}
 
 }

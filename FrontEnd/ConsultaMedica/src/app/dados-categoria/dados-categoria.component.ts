@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoriaModel } from './categoria.models';
+import { CategoriaService } from './categoria.service';
 
 @Component({
   selector: 'app-dados-categoria',
@@ -7,7 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DadosCategoriaComponent implements OnInit {
 
-  constructor() { }
+  categoria: CategoriaModel= new CategoriaModel;
+  constructor(private categoriaService: CategoriaService) { }
+
+  cadastrarCategoria(){
+      this.categoriaService.CadastrarCategoria(this.categoria).subscribe(categoria =>{
+      this.categoria = new CategoriaModel();
+      }, err =>{
+        console.log('Error ao cadastrar o aluno', err)
+      })
+  }
 
   ngOnInit(): void {
   }

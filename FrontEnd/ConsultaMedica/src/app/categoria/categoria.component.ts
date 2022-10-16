@@ -11,7 +11,9 @@ export class CategoriaComponent implements OnInit {
 
   categorias: Array<any> = new Array();
 
-  constructor(private categoriaService: CategoriaService) { }
+  constructor(private categoriaService: CategoriaService) { 
+    
+  }
 
 
   ngOnInit(): void {

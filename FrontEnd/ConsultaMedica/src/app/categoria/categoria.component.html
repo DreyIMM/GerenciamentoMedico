@@ -20,7 +20,7 @@
                       <tr *ngFor="let categoria of categorias">
                         <td>{{categoria.id}}</td>
                         <td>{{categoria.nome}}</td>
-                        <td><button class="btn btn-secondary btn-sm">Editar</button> <button class="m-1 btn-sm btn btn-danger">Excluir</button></td>
+                        <td><button class="btn btn-secondary btn-sm">Editar</button> <button class="m-1 btn-sm btn btn-danger" (click)="excluirCategoria(categoria.id)">Excluir</button></td>
                       </tr>
                     </tbody>
                   </table>                

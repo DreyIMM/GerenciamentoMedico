@@ -18,5 +18,9 @@ export class CategoriaService {
     CadastrarCategoria(categoria: CategoriaModel): Observable<any> {
       return this.http.post("http://localhost:8080/categoria/", categoria);
     }    
+
+    excluirCategoria(id:any){
+      return this.http.delete("http://localhost:8080/categoria/".concat(id));
+    } 
    
 }

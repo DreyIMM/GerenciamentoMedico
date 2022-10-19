@@ -43,6 +43,15 @@ export class CategoriaComponent implements OnInit {
     })
   }
 
+  excluirCategoria(id: number){
+    this.categoriaService.excluirCategoria(id).subscribe(categoria =>{
+        this.listarCategorias();
+    }, err=>{
+        alert("categoria não excluida, verifique se existe clinte vinculado");
+    })
+  }
+
+
   aoSalvarFechar(){
     let ref= document.getElementById('voltar');
     ref?.click()

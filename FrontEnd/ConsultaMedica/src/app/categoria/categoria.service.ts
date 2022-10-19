@@ -16,9 +16,7 @@ export class CategoriaService {
     }
 
     CadastrarCategoria(categoria: CategoriaModel): Observable<any> {
-
       return this.http.post("http://localhost:8080/categoria/", categoria);
-      
     }    
    
 }

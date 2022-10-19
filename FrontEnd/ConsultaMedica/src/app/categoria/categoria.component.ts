@@ -33,9 +33,19 @@ export class CategoriaComponent implements OnInit {
     this.categoriaService.CadastrarCategoria(this.categoria).subscribe(categoria =>{
     this.categoria = new CategoriaModel();
     this.listarCategorias();
+
+    this.aoSalvarFechar();
+    
+      
+
     }, err =>{
       console.log('Error ao cadastrar o aluno', err)
     })
-}
+  }
+
+  aoSalvarFechar(){
+    let ref= document.getElementById('voltar');
+    ref?.click()
+  }
 
 }

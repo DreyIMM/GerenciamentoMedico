@@ -26,4 +26,19 @@ export class MedicoComponent implements OnInit {
     })
   }
 
+  CadastrarMedicos(){
+    this.medicoService.CadastrarMedicos(this.medico).subscribe(medico =>{
+    this.medico = new MedicoModel();
+    this.listarMedicos();
+    this.aoSalvarFechar();
+    }, err =>{
+      console.log('Error ao cadastrar um medico', err)
+    })
+  }
+
+  aoSalvarFechar(){
+    let ref= document.getElementById('voltar');
+    ref?.click()
+  }
+
 }

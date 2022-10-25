@@ -15,8 +15,8 @@ export class MedicoService {
     return this.http.get("http://localhost:8080/medico/");
   }
 
-  CadastrarMedicos(categoria: MedicoModel): Observable<any> {
-    return this.http.post("http://localhost:8080/medico/", categoria);
+  CadastrarMedicos(medico: MedicoModel): Observable<any> {
+    return this.http.post("http://localhost:8080/medico/", medico);
   }    
 
   excluirMedicos(id:any){

@@ -12,6 +12,7 @@ import { FooterComponent } from './footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { MedicoComponent } from './medico/medico.component';
 import { SideBarModule } from './side-bar/side-bar.module';
+import { ClienteComponent } from './cliente/cliente.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SideBarModule } from './side-bar/side-bar.module';
     SideBarComponent,
     FooterComponent,
     MedicoComponent,
-    routingComponents
+    routingComponents,
+    ClienteComponent
   ],
   imports: [
     BrowserModule,

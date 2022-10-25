@@ -1,0 +1,38 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Pacientes</h1>
+</div>
+<div class="row">             
+    <div class="">
+        <div class="card shadow ">
+            <div>
+                <table class="table table-sm m-2">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Plano de saúde</th>
+                        <th scope="col">Numero carteirinha</th>
+                        <th scope="col">Ações</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let cliente of clientes">
+                        <td>{{cliente.id}}</td>
+                        <td>{{cliente.nome}}</td>
+                        <td>{{cliente.categoria.nome}}</td>
+                        <td>{{cliente.numCarteirinha}}</td>
+                        <td>
+                          <button type="button" class="btn-sm btn btn-warning" data-toggle="modal" data-target="#editarPlano">
+                              Detalhes
+                          </button>
+                          <button class="m-1 btn-sm btn btn-danger">    
+                            Excluir
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>                
+            </div>
+        </div>
+    </div>
+</div>

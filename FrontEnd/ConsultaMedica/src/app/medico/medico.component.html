@@ -1,0 +1,37 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Medico</h1>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CadastrarPlano">
+
+    </button>
+</div>
+<div class="row">             
+    <div class="">
+        <div class="card shadow ">
+            <div>
+                <table class="table table-sm m-2">
+                    <thead>
+                      <tr>
+                        <th scope="col">CRM</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Ações</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let medico of medicos">
+                        <td>{{medico.crm}}</td>
+                        <td>{{medico.nome}}</td>
+                        <td>
+                          <button type="button" class="btn-sm btn btn-dark" data-toggle="modal" data-target="#editarPlano">
+                              Editar
+                          </button>
+                          <button class="m-1 btn-sm btn btn-danger">
+                            Excluir
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>                
+            </div>
+        </div>
+    </div>
+</div>

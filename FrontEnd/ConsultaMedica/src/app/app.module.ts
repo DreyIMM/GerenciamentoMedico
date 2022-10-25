@@ -2,7 +2,7 @@ import {HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routingComponents  } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { CategoriaService } from './categoria/categoria.service';
@@ -10,6 +10,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule } from '@angular/forms';
+import { MedicoComponent } from './medico/medico.component';
+import { SideBarModule } from './side-bar/side-bar.module';
 
 @NgModule({
   declarations: [
@@ -17,13 +19,16 @@ import { FormsModule } from '@angular/forms';
     CategoriaComponent,
     NavbarComponent,
     SideBarComponent,
-    FooterComponent
+    FooterComponent,
+    MedicoComponent,
+    routingComponents
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    SideBarModule
   ],
   providers: [CategoriaService, HttpClientModule],
   bootstrap: [AppComponent]

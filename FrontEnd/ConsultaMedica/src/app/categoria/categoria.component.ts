@@ -60,6 +60,10 @@ export class CategoriaComponent implements OnInit {
     })
   }
 
+  editarCategoria(categoria: CategoriaModel){
+    
+  }
+
 
   aoSalvarFechar(){
     let ref= document.getElementById('voltar');

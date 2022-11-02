@@ -21,7 +21,7 @@
                         <td>{{categoria.id}}</td>
                         <td>{{categoria.nome}}</td>
                         <td>
-                          <button type="button" class="btn-sm btn btn-dark" data-toggle="modal" data-target="#editarPlano">
+                          <button type="button" class="btn-sm btn btn-dark" (click)="editarCategoria(categoria)" data-toggle="modal" data-target="#editarPlano">
                               Editar
                           </button>
                           <button class="m-1 btn-sm btn btn-danger" (click)="excluirCategoria(categoria.id)">

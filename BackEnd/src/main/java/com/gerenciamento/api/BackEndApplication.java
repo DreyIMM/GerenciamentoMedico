@@ -14,6 +14,7 @@ import com.gerenciamento.api.Models.Medico;
 import com.gerenciamento.api.repository.CategoriaRepository;
 import com.gerenciamento.api.repository.ClienteRepository;
 import com.gerenciamento.api.repository.MedicoRepository;
+import com.gerenciamento.api.repository.ConsultaRepository;
 
 @SpringBootApplication
 public class BackEndApplication implements CommandLineRunner{
@@ -26,6 +27,9 @@ public class BackEndApplication implements CommandLineRunner{
 	
 	@Autowired
 	private MedicoRepository medicorepository;
+	
+	@Autowired
+	private ConsultaRepository consultaRepository;
 	
 	   @Configuration
 	    public class CorsConfiguration implements WebMvcConfigurer {

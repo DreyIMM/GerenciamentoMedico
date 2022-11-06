@@ -11,7 +11,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.gerenciamento.api.Models.Cliente;
 import com.gerenciamento.api.Models.Medico;
-import com.gerenciamento.api.configs.DateConfig;
+import com.gerenciamento.api.configs.DateConfig;  
 
 public class ConsultaDto {
 

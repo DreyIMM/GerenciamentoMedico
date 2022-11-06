@@ -1,30 +1,24 @@
 package com.gerenciamento.api.controller;
 
-import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gerenciamento.api.Models.Cliente;
-import com.gerenciamento.api.Models.Medico;
 import com.gerenciamento.api.Service.ConsultaService;
-import com.gerenciamento.api.dto.ConsultaDto;
+import com.gerenciamento.api.Service.MedicoService;
 import com.gerenciamento.api.Models.Consulta;
-import com.gerenciamento.api.repository.ConsultaRepository;
+import com.gerenciamento.api.repository.ConsultaCustomRepository;
 import com.gerenciamento.api.repository.MedicoRepository;
 
 
@@ -33,23 +27,40 @@ import com.gerenciamento.api.repository.MedicoRepository;
 public class ConsultaController {
 	
 	@Autowired
-	private final ConsultaService _service;
+	private final ConsultaService _serviceConsulta;
+	private final MedicoService _serviceMedico;
+	private final ConsultaCustomRepository _consultaCustomRepository;
 	
-	public ConsultaController(ConsultaService repository) {
-		_service = repository;
+	public ConsultaController(ConsultaService consultaRepository, MedicoService  medicoService,ConsultaCustomRepository consultaCustomRepository ) {
+		_serviceConsulta = consultaRepository;
+		_serviceMedico = medicoService;
+		_consultaCustomRepository = consultaCustomRepository;
 	}
 	
 	
 	@PostMapping
-	public ResponseEntity<Object> salvarConsulta(@RequestBody @Valid Consulta consultadto){
+	public ResponseEntity<Object> salvarConsulta(@RequestBody @Valid Consulta consulta){	
+		
+		if( !(_serviceMedico.existsByCrm(consulta.getMedico().getCrm())) ) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("CRM do médico não existe ");
+		}
 
-		return ResponseEntity.status(HttpStatus.CREATED).body(_service.save(consultadto));
+		if (_serviceConsulta.existsByData(consulta.getData()) && _serviceConsulta.existsByHoraInicio(consulta.getHoraInicio()) && _serviceConsulta.existsByMedico(consulta.getMedico()) ) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("Médico indisponível nesse horario");
+		};
+
+		return ResponseEntity.status(HttpStatus.CREATED).body(_serviceConsulta.save(consulta));
 	}
+	
+	
 	
 	@GetMapping
 	public ResponseEntity<List<Consulta>> findAll(){
-		List<Consulta> lista = _service.TodasConsultas();	
+		List<Consulta> lista = _serviceConsulta.TodasConsultas();	
 		return ResponseEntity.status(HttpStatus.CREATED).body(lista);
 	}
+	
+	
+	
 	
 }

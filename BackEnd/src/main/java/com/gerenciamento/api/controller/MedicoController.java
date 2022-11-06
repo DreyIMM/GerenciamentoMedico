@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gerenciamento.api.Models.Categoria;
 import com.gerenciamento.api.Models.Medico;
+import com.gerenciamento.api.Service.MedicoService;
 import com.gerenciamento.api.repository.CategoriaRepository;
 import com.gerenciamento.api.repository.MedicoRepository;
 
@@ -22,22 +24,26 @@ import com.gerenciamento.api.repository.MedicoRepository;
 @RequestMapping(value = "/medico")
 public class MedicoController {
 	@Autowired
-	private final MedicoRepository _repository;
+	private final MedicoService _repository;
 	
-	public MedicoController(MedicoRepository repository) {
+	public MedicoController(MedicoService repository) {
 		_repository = repository;
 	}
 	
 	@GetMapping
 	public ResponseEntity<List<Medico>> findAll(){
-		List<Medico> lista = _repository.findAll();	
+		List<Medico> lista = _repository.todosMedicos();	
 		return ResponseEntity.ok(lista);
 	}
 	
 	
 	@PostMapping
-	Medico novoMedico(@RequestBody Medico novoMedico) {
-		return _repository.save(novoMedico);
+	ResponseEntity<Object> novoMedico(@RequestBody Medico novoMedico) {
+		if(_repository.existsByCrm(novoMedico.getCrm())) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("CRM já vinculado á outro médico");
+		}
+		return ResponseEntity.status(HttpStatus.CREATED).body(_repository.save(novoMedico));
+
 	}
 	
 }

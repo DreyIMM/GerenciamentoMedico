@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gerenciamento.api.Models.Cliente;
+import com.gerenciamento.api.Service.ClienteService;
 import com.gerenciamento.api.repository.ClienteRepository;
 
 @RestController
@@ -19,15 +20,15 @@ import com.gerenciamento.api.repository.ClienteRepository;
 public class ClienteController {
 	
 	@Autowired
-	private final ClienteRepository _repository;
+	private final ClienteService _repository;
 	
-	public ClienteController(ClienteRepository repository) {
+	public ClienteController(ClienteService repository) {
 		_repository = repository;
 	}
 	
 	@GetMapping
 	public ResponseEntity<List<Cliente>> findAll(){
-		List<Cliente> lista = _repository.findAll();	
+		List<Cliente> lista = _repository.todosPaciente();	
 		return ResponseEntity.ok(lista);
 	}
 	

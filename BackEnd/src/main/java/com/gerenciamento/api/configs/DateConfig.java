@@ -2,6 +2,9 @@ package com.gerenciamento.api.configs;
 
 import java.io.IOException;
 import java.util.Date;
+
+import org.springframework.context.annotation.Configuration;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -10,11 +13,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 
-
+@Configuration
 public class DateConfig  extends JsonDeserializer<Date> {
 
     private SimpleDateFormat format = new SimpleDateFormat("HH:mm");
-
+    
 	
     @Override
     public Date deserialize(JsonParser p, DeserializationContext ctxt) 

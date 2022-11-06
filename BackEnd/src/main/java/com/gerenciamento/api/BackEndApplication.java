@@ -11,6 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.gerenciamento.api.Models.Categoria;
 import com.gerenciamento.api.Models.Cliente;
 import com.gerenciamento.api.Models.Medico;
+import com.gerenciamento.api.Service.MedicoService;
 import com.gerenciamento.api.repository.CategoriaRepository;
 import com.gerenciamento.api.repository.ClienteRepository;
 import com.gerenciamento.api.repository.MedicoRepository;
@@ -26,7 +27,7 @@ public class BackEndApplication implements CommandLineRunner{
 	private ClienteRepository clienterepository;
 	
 	@Autowired
-	private MedicoRepository medicorepository;
+	private MedicoService medicoService;
 	
 	@Autowired
 	private ConsultaRepository consultaRepository;
@@ -67,8 +68,8 @@ public class BackEndApplication implements CommandLineRunner{
 		Medico m1 = new Medico(3001L, "Dr Ruberval Mendes");
 		Medico m2 = new Medico(3002L, "Dr Alan Carvalho");
 
-		medicorepository.save(m1);
-		medicorepository.save(m2);
+		medicoService.save(m1);
+		medicoService.save(m2);
 		
 	}
 

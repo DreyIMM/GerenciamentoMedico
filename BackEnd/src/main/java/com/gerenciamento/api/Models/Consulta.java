@@ -14,10 +14,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.gerenciamento.api.configs.DateConfig;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 @Entity
 public class Consulta implements Serializable {
@@ -29,30 +28,50 @@ public class Consulta implements Serializable {
 	
 	@NotNull
 	@Temporal(TemporalType.TIME)
-	@DateTimeFormat(style = "HH:mm")
-	@JsonDeserialize(using = DateConfig.class)
-    @Column(name="dataInicio", nullable=false, unique=true)
-	private Date dataInicio;
+	@JsonFormat(pattern = "HH:mm", timezone = "America/Sao_Paulo")
+    @Column(name="HoraInicio", nullable=false)
+	private Date horaInicio;
+	
+	@NotNull
+	@Temporal(TemporalType.DATE)
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "America/Sao_Paulo")
+    @Column(name="data", nullable=false)
+	private Date data;
 	
 	@ManyToOne
- 	@JoinColumn(name = "medicoCrm", nullable = false)
+	@JoinColumn(name = "medicoCrm", nullable = false)
 	private Medico medico;
 	
 	@ManyToOne
 	@JoinColumn(name ="pacienteId", nullable = false)
 	private Cliente cliente;
-
 	
 
-	public Date getDataInicio() {
-		return dataInicio;
+
+
+	public Long getId() {
+		return Id;
 	}
 
-
-	public void Date(Date dataInicio) {
-		this.dataInicio = dataInicio;
+	public void setId(Long id) {
+		Id = id;
 	}
 
+	public Date getHoraInicio() {
+		return horaInicio;
+	}
+
+	public void setHoraInicio(Date horaInicio) {
+		this.horaInicio = horaInicio;
+	}
+
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
+	}
 
 	public Medico getMedico() {
 		return medico;
@@ -68,29 +87,19 @@ public class Consulta implements Serializable {
 		return cliente;
 	}
 
-
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
 
-	public Long getId() {
-		return Id;
-	}
 
 
-	public void setId(Long id) {
-		Id = id;
-	}
-	
-	
-	
-		
-	
+
+
+
 	
 }

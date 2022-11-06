@@ -69,7 +69,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Editar Plano</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Editar Plano {{categoria.nome}}</h5>
         <button type="button" class="btn-close" data-dismiss="modal">
         </button>
       </div>
@@ -78,7 +78,7 @@
           <div class="row">
             
             <div class="col">
-              <input type="text" name="name" class="form-control" placeholder="Nome" [(ngModel)]="categoria.nome">
+              <input type="text" name="name" class="form-control" placeholder="{{categoria.nome}}">
             </div>
 
           </div>
@@ -86,7 +86,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" id="voltar" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
-        <button type="button" class="btn btn-primary" >Cadastrar</button>
+        <button type="button" class="btn btn-primary" (click)="editarCategoria(categoria)" >Cadastrar</button>
       </div>
     </div>
   </div>

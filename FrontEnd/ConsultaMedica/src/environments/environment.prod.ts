@@ -1,6 +1,4 @@
-export const environment = {
-  production: true,
-  baseUrl: 'http://consultauva.tk/'
-};
+export const API_PATH = "https://www.consultauva.tk/"
+
 
 

@@ -29,7 +29,7 @@ public class ConsultaService {
 	public List<Consulta> TodasConsultas() {
 		return consultaRepository.findAll();
 	}
-	public boolean existsByData(Date data){
+	public boolean existsByData(String data){
 		return consultaRepository.existsByData(data);
 	}
 
@@ -37,7 +37,7 @@ public class ConsultaService {
 		return consultaRepository.existsByMedico(medico);
 	}
 
-	public boolean existsByHoraInicio(Date horaInicio){
+	public boolean existsByHoraInicio(String horaInicio){
 		return consultaRepository.existsByHoraInicio(horaInicio);
 	}
 	

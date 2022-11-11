@@ -21,11 +21,11 @@
                         <td>{{categoria.id}}</td>
                         <td>{{categoria.nome}}</td>
                         <td>
-                          <button type="button" class="btn-sm btn btn-dark" (click)="editarCategoria(categoria)" data-toggle="modal" data-target="#editarPlano">
-                              Editar
+                          <button mat-icon-button color="primary" data-toggle="modal" data-target="#editarPlano">
+                            <mat-icon>edit</mat-icon>
                           </button>
-                          <button class="m-1 btn-sm btn btn-danger" (click)="excluirCategoria(categoria.id)">
-                            Excluir
+                          <button mat-icon-button color="warn" (click)="excluirCategoria(categoria.id)">
+                            <mat-icon>delete</mat-icon>
                           </button>
                         </td>
                       </tr>

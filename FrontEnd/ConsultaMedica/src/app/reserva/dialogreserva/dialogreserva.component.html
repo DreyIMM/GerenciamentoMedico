@@ -1,0 +1,47 @@
+<h1 mat-dialog-title>Reserva médica</h1>
+<form [formGroup]="reservaForm">
+  <div mat-dialog-content>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Cliente</mat-label>
+      <mat-select formControlName="cliente">
+        <mat-option *ngFor="let cliente of clientes" [value]="cliente.id">
+            {{cliente.nome}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Medico</mat-label>
+      <mat-select formControlName="medico">
+        <mat-option *ngFor="let medico of medicos" [value]="medico.crm">
+            {{medico.nome}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+  
+    <mat-form-field appearance="outline">
+        <mat-label>Hora inicio</mat-label>
+      <mat-select formControlName="horaInicio">
+        <mat-option value="07:00">07:00</mat-option>
+        <mat-option value="08:00">08:00</mat-option>
+        <mat-option value="09:00">09:00</mat-option>
+        <mat-option value="16:00">16:00</mat-option>
+      </mat-select>  
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Escolha o dia</mat-label>
+      <input formControlName="data" matInput [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    
+  </div>
+  <div mat-dialog-action [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close="">Fechar</button>
+    <button style="margin-left: 8px;" (click)="addReserva()" mat-raised-button color="primary">Agendar</button>
+  </div>
+</form>

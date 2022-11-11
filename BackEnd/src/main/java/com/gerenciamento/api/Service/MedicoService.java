@@ -31,6 +31,10 @@ public class MedicoService {
 	public List<Medico> todosMedicos() {
 		return medicoRepository.findAll();
 	}
+
+	public void excluir(Long id){
+		 medicoRepository.deleteById(id);
+	}
 	
 	public boolean existsByCrm(Long crm) {
 		return medicoRepository.existsById(crm);

@@ -17,9 +17,9 @@ import java.util.List;
 @Repository
 public interface ConsultaRepository extends JpaRepository<Consulta, Long> {
 	
-	public boolean existsByData(Date data);
+	public boolean existsByData(String data);
 	public boolean existsByMedico(Medico medico);
-	public boolean existsByHoraInicio(Date horaInicio);
+	public boolean existsByHoraInicio(String horaInicio);
 
 	 
 }

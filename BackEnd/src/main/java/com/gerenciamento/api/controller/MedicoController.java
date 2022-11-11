@@ -35,15 +35,18 @@ public class MedicoController {
 		List<Medico> lista = _repository.todosMedicos();	
 		return ResponseEntity.ok(lista);
 	}
-	
-	
+
 	@PostMapping
 	ResponseEntity<Object> novoMedico(@RequestBody Medico novoMedico) {
 		if(_repository.existsByCrm(novoMedico.getCrm())) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("CRM já vinculado á outro médico");
 		}
 		return ResponseEntity.status(HttpStatus.CREATED).body(_repository.save(novoMedico));
+	}
 
+	@DeleteMapping("/{id}")
+	void excluirMedico(@PathVariable Long id) {
+		_repository.excluir(id);
 	}
 	
 }

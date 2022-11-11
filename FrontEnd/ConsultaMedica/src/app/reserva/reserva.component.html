@@ -1,0 +1,16 @@
+<button (click)="openDialog()" mat-raised-button color="primary">Agendamento</button>
+
+
+<div class="row">
+  
+  <div *ngFor="let reserva of reservas" class="col-sm-4 mt-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Paciente - {{reserva.cliente.nome}}</h5>
+        <p class="card-text">Consulta marcada com o {{reserva.medico.nome}} no dia <strong> {{reserva.data}}</strong> às {{reserva.horaInicio}}</p>
+        <a href="#" class="btn btn-outline-danger btn-sm">Cancelar</a>
+      </div>
+    </div>
+  </div>
+
+</div>

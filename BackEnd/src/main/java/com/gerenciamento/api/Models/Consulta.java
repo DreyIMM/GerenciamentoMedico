@@ -27,16 +27,12 @@ public class Consulta implements Serializable {
 	private Long Id;
 	
 	@NotNull
-	@Temporal(TemporalType.TIME)
-	@JsonFormat(pattern = "HH:mm", timezone = "America/Sao_Paulo")
     @Column(name="HoraInicio", nullable=false)
-	private Date horaInicio;
+	private String horaInicio;
 	
 	@NotNull
-	@Temporal(TemporalType.DATE)
-	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "America/Sao_Paulo")
     @Column(name="data", nullable=false)
-	private Date data;
+	private String data;
 	
 	@ManyToOne
 	@JoinColumn(name = "medicoCrm", nullable = false)
@@ -57,19 +53,19 @@ public class Consulta implements Serializable {
 		Id = id;
 	}
 
-	public Date getHoraInicio() {
+	public String getHoraInicio() {
 		return horaInicio;
 	}
 
-	public void setHoraInicio(Date horaInicio) {
+	public void setHoraInicio(String horaInicio) {
 		this.horaInicio = horaInicio;
 	}
 
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 

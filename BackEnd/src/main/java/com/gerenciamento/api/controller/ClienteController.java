@@ -16,7 +16,6 @@ import com.gerenciamento.api.Service.ClienteService;
 import com.gerenciamento.api.repository.ClienteRepository;
 
 @RestController
-@RequestMapping(value = "/cliente")
 public class ClienteController {
 	
 	@Autowired
@@ -26,14 +25,15 @@ public class ClienteController {
 		_repository = repository;
 	}
 	
-	@GetMapping
+ 
+	@GetMapping("/clientes")
 	public ResponseEntity<List<Cliente>> findAll(){
 		List<Cliente> lista = _repository.todosPaciente();	
 		return ResponseEntity.ok(lista);
 	}
 	
 	
-	@PostMapping
+	@PostMapping("/cliente")
 	Cliente novaCategoria(@RequestBody Cliente novoCliente) {
 		return _repository.save(novoCliente);
 	}

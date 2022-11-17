@@ -21,7 +21,6 @@ import com.gerenciamento.api.repository.CategoriaRepository;
 import com.gerenciamento.api.repository.MedicoRepository;
 
 @RestController
-@RequestMapping(value = "/medico")
 public class MedicoController {
 	@Autowired
 	private final MedicoService _repository;
@@ -30,13 +29,13 @@ public class MedicoController {
 		_repository = repository;
 	}
 	
-	@GetMapping
+	@GetMapping("/medicos")
 	public ResponseEntity<List<Medico>> findAll(){
 		List<Medico> lista = _repository.todosMedicos();	
 		return ResponseEntity.ok(lista);
 	}
 
-	@PostMapping
+	@PostMapping("/medico")
 	ResponseEntity<Object> novoMedico(@RequestBody Medico novoMedico) {
 		if(_repository.existsByCrm(novoMedico.getCrm())) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("CRM já vinculado á outro médico");
@@ -44,7 +43,7 @@ public class MedicoController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(_repository.save(novoMedico));
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("medico/{id}")
 	void excluirMedico(@PathVariable Long id) {
 		_repository.excluir(id);
 	}

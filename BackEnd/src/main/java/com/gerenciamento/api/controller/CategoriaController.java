@@ -17,7 +17,6 @@ import com.gerenciamento.api.Models.Categoria;
 import com.gerenciamento.api.repository.CategoriaRepository;
 
 @RestController
-@RequestMapping(value = "/categoria")
 public class CategoriaController {
 	@Autowired
 	private final CategoriaRepository _repository;
@@ -26,14 +25,14 @@ public class CategoriaController {
 		_repository = repository;
 	}
 	
-	@GetMapping
+	@GetMapping("/categorias")
 	public ResponseEntity<List<Categoria>> findAll(){
 		List<Categoria> lista = _repository.findAll();	
 		return ResponseEntity.ok(lista);
 	}
 	
 	
-	@PostMapping
+	@PostMapping("/categoria")
 	Categoria novaCategoria(@RequestBody Categoria novaCategoria) {
 		return _repository.save(novaCategoria);
 	}

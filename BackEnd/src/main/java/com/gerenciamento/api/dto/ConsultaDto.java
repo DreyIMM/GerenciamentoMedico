@@ -1,19 +1,7 @@
 package com.gerenciamento.api.dto;
-
 import java.util.Date;
-
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.gerenciamento.api.Models.Cliente;
 import com.gerenciamento.api.Models.Medico;
-import com.gerenciamento.api.configs.DateConfig;
 
 
 public class ConsultaDto {

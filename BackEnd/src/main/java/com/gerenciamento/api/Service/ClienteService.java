@@ -6,6 +6,9 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.gerenciamento.api.Models.Cliente;
@@ -13,10 +16,11 @@ import com.gerenciamento.api.Models.Consulta;
 import com.gerenciamento.api.Models.Medico;
 import com.gerenciamento.api.repository.ClienteRepository;
 import com.gerenciamento.api.repository.ConsultaRepository;
+import com.gerenciamento.api.repository.CustomClienteDetails;
 import com.gerenciamento.api.repository.MedicoRepository;
 
 @Service
-public class ClienteService {
+public class ClienteService implements UserDetailsService {
 	
 	
 	final ClienteRepository clienteRepository;
@@ -36,6 +40,16 @@ public class ClienteService {
 	
 	public boolean existsByCrm(Long crm) {
 		return clienteRepository.existsById(crm);
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+		Cliente cliente = clienteRepository.findByUsername(username);
+		if(cliente == null) {
+			throw new UsernameNotFoundException("Paciente não localizado");
+		}
+		return new CustomClienteDetails(cliente);
 	}
 	
 

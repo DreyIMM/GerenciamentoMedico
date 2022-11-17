@@ -6,5 +6,7 @@ import org.springframework.stereotype.Component;
 import com.gerenciamento.api.Models.Cliente;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
+	
+	Cliente findByUsername(String username);
 
 }

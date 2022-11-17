@@ -23,7 +23,6 @@ import com.gerenciamento.api.repository.MedicoRepository;
 
 
 @RestController
-@RequestMapping(value = "/consulta")
 public class ConsultaController {
 	
 	@Autowired
@@ -38,7 +37,7 @@ public class ConsultaController {
 	}
 	
 	
-	@PostMapping
+	@PostMapping("/consultas")
 	public ResponseEntity<Object> salvarConsulta(@RequestBody @Valid Consulta consulta){	
 		
 		if( !(_serviceMedico.existsByCrm(consulta.getMedico().getCrm())) ) {
@@ -54,7 +53,7 @@ public class ConsultaController {
 	
 	
 	
-	@GetMapping
+	@GetMapping("/consultas")
 	public ResponseEntity<List<Consulta>> findAll(){
 		List<Consulta> lista = _serviceConsulta.TodasConsultas();	
 		return ResponseEntity.status(HttpStatus.CREATED).body(lista);

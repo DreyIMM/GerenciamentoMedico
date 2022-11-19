@@ -4,8 +4,12 @@ import { MedicoComponent } from './medico/medico.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { ClienteComponent } from './cliente/cliente.component';
 import { ReservaComponent } from './reserva/reserva.component';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
+  {path: '/', redirectTo: '/home'},
+  {path :'home', component: HomeComponent},
   {path: 'medicos', component: MedicoComponent},
   {path: 'categorias', component: CategoriaComponent},
   {path: 'clientes', component: ClienteComponent},
@@ -17,4 +21,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [MedicoComponent,CategoriaComponent]

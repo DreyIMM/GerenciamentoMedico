@@ -1,7 +1,7 @@
 import {HttpClientModule } from '@angular/common/http';
 import { NgModule,LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule, routingComponents  } from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { CategoriaService } from './categoria/categoria.service';
@@ -25,6 +25,9 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatNativeDateModule } from '@angular/material/core';
 import localePT from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { LoginComponent } from './login/login.component';
+import { LoginserviceService } from './login/loginservice.service';
+import { HomeComponent } from './home/home.component';
 
 registerLocaleData(localePT);
 
@@ -40,7 +43,9 @@ registerLocaleData(localePT);
     MedicoComponent,
     ClienteComponent,
     ReservaComponent,
-    DialogreservaComponent
+    DialogreservaComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +65,7 @@ registerLocaleData(localePT);
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [CategoriaService, HttpClientModule, { provide: LOCALE_ID, useValue: 'pt-br' },],
+  providers: [LoginserviceService, { provide: LOCALE_ID, useValue: 'pt-br' },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

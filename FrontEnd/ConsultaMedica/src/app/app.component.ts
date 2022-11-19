@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { LoginserviceService } from './login/loginservice.service';
 
-declare function Ola(): void;
 
 @Component({
   selector: 'app-root',
@@ -10,8 +10,9 @@ declare function Ola(): void;
 export class AppComponent {
   title = 'ConsultaMedica';
 
-  constructor(){
-    
+  constructor(public service: LoginserviceService){
   }
+
+
 
 }

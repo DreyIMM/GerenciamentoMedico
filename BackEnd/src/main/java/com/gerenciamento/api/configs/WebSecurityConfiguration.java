@@ -30,7 +30,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 		http.authorizeHttpRequests()
-		.antMatchers("/")
+		.antMatchers("/login", "/consultas")
 		.permitAll()
 		.antMatchers("/consultas")
 		.hasAuthority("USER")
@@ -39,6 +39,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{
 		.anyRequest()
 		.authenticated()
 		.and()
+		.cors()
+		.disable()
 		.csrf()
 		.disable()
 		.httpBasic();

@@ -3,6 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { API_PATH } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import {Buffer} from 'buffer';
+import { tap } from 'rxjs';
+import { ClienteLogado } from '../cliente/clienteLogado';
+
 
 
 @Injectable({
@@ -10,36 +13,34 @@ import {Buffer} from 'buffer';
 })
 export class LoginserviceService {
 
-  username = "Andrey"
-  password = "123"
+  username = ""
+  password = ""
+  public cliente = new ClienteLogado();
   public logado = false;
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string) {
-    return this.http.get(`${API_PATH}login`,
-      { headers: { authorization: this.createBasicAuthToken(username, password) } }).pipe(map((res) => {
-        this.username = username;
-        this.password = password;
-        this.registerSuccessfulLogin(username, password);
-        this.logado = true;
-        console.log(username, password);
+    this.username = username;
+    this.password = password;
+
+    return this.http.post(`${API_PATH}login`,null,this.getOptions()).pipe(tap((dados) => {    
+      this.registerSuccessfulLogin(dados);
+      this.logado = true;
       }));
   }
 
   getOptions(){
-    return {headers: new HttpHeaders ({
+    return {
+      headers: new HttpHeaders ({
           'Content-Type': 'application/json',
-          'Authorization' : this.createBasicAuthToken(this.username, this.password) 
+          'Authorization' : 'Basic ' + Buffer.from(`${this.username}:${this.password}`, 'utf-8').toString('base64')
       }) };
   }
 
 
-  createBasicAuthToken(username: string, password:string){
-    return 'Basic ' + Buffer.from(`${username}:${password}`, 'utf-8').toString('base64');
-  }
-
-  registerSuccessfulLogin(username: string, password: string) {
-    // save the username to session
+  registerSuccessfulLogin(cliente: any) {
+    console.log(cliente);
+    this.cliente = cliente;
   }
 
 }

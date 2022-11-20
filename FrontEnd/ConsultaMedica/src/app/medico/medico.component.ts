@@ -36,6 +36,14 @@ export class MedicoComponent implements OnInit {
     })
   }
 
+  excluirMedico(id: number){
+    this.medicoService.excluirMedico(id).subscribe(medico =>{
+        this.listarMedicos();
+    }, err=>{
+        alert("medico não excluida, verifique se existe clinte vinculado");
+    })
+  }
+
   aoSalvarFechar(){
     let ref= document.getElementById('voltar');
     ref?.click()

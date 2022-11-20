@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import com.gerenciamento.api.repository.CategoriaRepository;
 import com.gerenciamento.api.repository.MedicoRepository;
 
 @RestController
+@CrossOrigin("*")
 public class MedicoController {
 	@Autowired
 	private final MedicoService _repository;
@@ -43,7 +45,7 @@ public class MedicoController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(_repository.save(novoMedico));
 	}
 
-	@DeleteMapping("medico/{id}")
+	@DeleteMapping("/medico/{id}")
 	void excluirMedico(@PathVariable Long id) {
 		_repository.excluir(id);
 	}

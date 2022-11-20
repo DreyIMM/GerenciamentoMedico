@@ -28,12 +28,10 @@ public class ConsultaController {
 	@Autowired
 	private final ConsultaService _serviceConsulta;
 	private final MedicoService _serviceMedico;
-	private final ConsultaCustomRepository _consultaCustomRepository;
 	
-	public ConsultaController(ConsultaService consultaRepository, MedicoService  medicoService,ConsultaCustomRepository consultaCustomRepository ) {
+	public ConsultaController(ConsultaService consultaRepository, MedicoService  medicoService) {
 		_serviceConsulta = consultaRepository;
 		_serviceMedico = medicoService;
-		_consultaCustomRepository = consultaCustomRepository;
 	}
 	
 	

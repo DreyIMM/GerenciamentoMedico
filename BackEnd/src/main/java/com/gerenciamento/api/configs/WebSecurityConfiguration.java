@@ -1,48 +1,49 @@
 package com.gerenciamento.api.configs;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{
+public class WebSecurityConfiguration {
 
-	@Autowired
-	private UserDetailsService userDetailsSerivce;
+	@Bean
+    public UserDetailsService userDetailsService() {
+        return new ClienteLogadoService();
+    }
 	
 	@Bean
-	AuthenticationProvider authenticationProvider() {
-		DaoAuthenticationProvider provider  = new DaoAuthenticationProvider();
-		provider.setUserDetailsService(userDetailsSerivce);
-		provider.setPasswordEncoder(new BCryptPasswordEncoder());
-		
-		return provider;
-	}
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 	
-	@Override
-	protected void configure(HttpSecurity http) throws Exception{
-		http.authorizeHttpRequests()
-		.antMatchers("/login", "/consultas")
-		.permitAll()
-		.antMatchers("/consultas")
-		.hasAuthority("USER")
-		.antMatchers("/medicos", "clientes", "categorias")
-		.hasAuthority("ADMIN")		
-		.anyRequest()
-		.authenticated()
-		.and()
-		.cors()
-		.disable()
-		.csrf()
-		.disable()
-		.httpBasic();
-		}
+	@Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService());
+        authProvider.setPasswordEncoder(passwordEncoder());
+        return authProvider;
+    }
+	
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		http.authorizeRequests()
+		    .antMatchers(HttpMethod.OPTIONS).permitAll()
+	        .antMatchers("/","/login/**").permitAll()
+	        .antMatchers("/consultas/**").hasAuthority("USER")
+	        .antMatchers("/medicos/**","/clientes/**","/categorias/**", "/categoria/**", "/consultas/**").hasAuthority("ADMIN")
+	        .anyRequest().authenticated()
+	        .and()
+	        .httpBasic();
+	    http.csrf().disable();
+        return http.build();
+    }
+	
 }

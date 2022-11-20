@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ClienteLogado } from '../cliente/clienteLogado';
+import { LoginComponent } from '../login/login.component';
+import { LoginserviceService } from '../login/loginservice.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  public cliente: ClienteLogado = new ClienteLogado ;
+
+
+  constructor(private login: LoginserviceService) { }
 
   ngOnInit(): void {
+    this.cliente = this.login.cliente
   }
 
 }

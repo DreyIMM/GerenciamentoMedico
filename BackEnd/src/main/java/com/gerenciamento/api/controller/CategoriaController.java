@@ -38,7 +38,7 @@ public class CategoriaController {
 	}
 	
 	//Observse: cuidado que ao excluir um plano, pode ter clientes vinculados(Solução)
-	@DeleteMapping("/{id}")
+	@DeleteMapping("categoria/{id}")
 	  void excluirCategoria(@PathVariable Long id) {
 		_repository.deleteById(id);
 		_repository.findAll();

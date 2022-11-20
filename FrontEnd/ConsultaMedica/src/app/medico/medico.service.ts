@@ -14,20 +14,19 @@ export class MedicoService {
 
 
   listarMedicos(): Observable<any> {
-    return this.http.get(`${API_PATH}medicos`, 
-    { headers: { authorization: this.login.createBasicAuthToken("Andrey", "123") } });
+    return this.http.get(`${API_PATH}medicos`, this.login.getOptions());
   }
 
   CadastrarMedicos(medico: MedicoModel): Observable<any> {
-    return this.http.post(`${API_PATH}medico`, medico);
+    return this.http.post(`${API_PATH}medico`, medico, this.login.getOptions());
   }    
 
-  excluirMedicos(id:any){
-    return this.http.delete(`${API_PATH}medico/${id}`);
+  excluirMedico(id:number){
+    return this.http.delete(`${API_PATH}medico/${id}`, this.login.getOptions());
   } 
 
-  atualizarMedicos(id:any, categoria: MedicoModel): Observable<any>{
-    return this.http.put(`${API_PATH}medico/${id}`, categoria);
+  atualizarMedicos(id:any, medico: MedicoModel): Observable<any>{
+    return this.http.put(`${API_PATH}medico/${id}`, medico);
   }
 
 }

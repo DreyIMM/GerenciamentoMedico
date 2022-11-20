@@ -9,11 +9,11 @@ public class ClienteLogadoDTO {
 	
 	public ClienteLogadoDTO() {}
 	
-	public ClienteLogadoDTO(Long id, String nome, String username, String role) {
+	public ClienteLogadoDTO(Long id, String nome, String role, String username) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.username = username;
 		this.role = role;
+		this.username = username;
 	}
 }

@@ -2,6 +2,7 @@ package com.gerenciamento.api.controller;
 
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collector;
 
 import javax.validation.Valid;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gerenciamento.api.Service.ConsultaService;
 import com.gerenciamento.api.Service.MedicoService;
+import com.gerenciamento.api.Models.Cliente;
 import com.gerenciamento.api.Models.Consulta;
 import com.gerenciamento.api.repository.ConsultaCustomRepository;
 import com.gerenciamento.api.repository.MedicoRepository;
@@ -56,6 +59,16 @@ public class ConsultaController {
 		List<Consulta> lista = _serviceConsulta.TodasConsultas();	
 		return ResponseEntity.status(HttpStatus.CREATED).body(lista);
 	}
+	
+	
+	@GetMapping("/consultas/{id}")
+	public ResponseEntity<List<Consulta>> findConsultasUmPaciente(@PathVariable Cliente id){
+		
+		List<Consulta> lista= _serviceConsulta.ConsultaPaciente(id);
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body(lista);
+	}
+	
 	
 	
 	

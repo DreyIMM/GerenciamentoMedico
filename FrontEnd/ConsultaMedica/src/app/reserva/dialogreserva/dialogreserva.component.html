@@ -2,7 +2,7 @@
 <form [formGroup]="reservaForm">
   <div mat-dialog-content>
   
-    <mat-form-field appearance="outline">
+    <mat-form-field [hidden]="cliente.role == 'USER'" appearance="outline">
       <mat-label>Cliente</mat-label>
       <mat-select formControlName="cliente">
         <mat-option *ngFor="let cliente of clientes" [value]="cliente.id">

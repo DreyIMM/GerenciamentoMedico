@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginserviceService } from '../login/loginservice.service';
+import { ClienteLogado } from '../cliente/clienteLogado';
+
 
 @Component({
   selector: 'app-side-bar',
@@ -8,9 +11,14 @@ import { Component, OnInit } from '@angular/core';
 
 export class SideBarComponent implements OnInit {
 
-  constructor() { }
+  public cliente: ClienteLogado = new ClienteLogado ;
+
+  constructor(private login: LoginserviceService) { }
 
   ngOnInit(): void {
+    this.cliente = this.login.cliente
+    console.log(this.cliente);
+
   }
 
 }

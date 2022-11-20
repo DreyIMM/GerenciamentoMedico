@@ -4,6 +4,8 @@ import { DialogreservaComponent } from './dialogreserva/dialogreserva.component'
 import { DreservaserviceService } from './dialogreserva/dreservaservice.service';
 import { ReservaService } from './reserva.service';
 import { Reserva } from './dialogreserva/reserva.models';
+import { ClienteLogado } from '../cliente/clienteLogado';
+import { LoginserviceService } from '../login/loginservice.service';
 
 @Component({
   selector: 'app-reserva',
@@ -14,7 +16,9 @@ export class ReservaComponent implements OnInit {
 
   reservas: Reserva[] =[]
 
-  constructor(private dialog: MatDialog, private DreservaserviceService: DreservaserviceService, private ReservaService: ReservaService) { }
+  public cliente: ClienteLogado = new ClienteLogado ;
+
+  constructor(private dialog: MatDialog, private DreservaserviceService: DreservaserviceService, private ReservaService: ReservaService, private login:LoginserviceService) { }
   
   openDialog() {
     this.dialog.open(DialogreservaComponent, {
@@ -26,7 +30,8 @@ export class ReservaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.listarReservas();
+    this.cliente = this.login.cliente;
+    this.cliente.role == "USER" ? this.reservarFetchPaciente(): this.listarReservas();
   }
 
   listarReservas(){
@@ -38,7 +43,11 @@ export class ReservaComponent implements OnInit {
     })
   }
 
-  
+  reservarFetchPaciente(){
+    this.ReservaService.reservaFetchPaciente(this.cliente.id).subscribe(result =>{
+      this.reservas = result;
+    })
+  }  
 
 
 }

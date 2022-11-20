@@ -4,6 +4,9 @@ import { FormGroup, FormBuilder, Validator, Validators} from '@angular/forms';
 import { Reserva } from './reserva.models';
 import * as moment from 'moment';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ClienteLogado } from '../../cliente/clienteLogado';
+import { LoginserviceService } from '../../login/loginservice.service';
+
 @Component({
   selector: 'app-dialogreserva',
   templateUrl: './dialogreserva.component.html',
@@ -15,11 +18,19 @@ export class DialogreservaComponent implements OnInit {
   clientes: Array<any> = new Array();
   reservaForm !: FormGroup
   reserva: Reserva = new Reserva;
-  constructor(private DreservaserviceService: DreservaserviceService,private formBuilder: FormBuilder, private dialogRef: MatDialogRef<DialogreservaComponent>) { }
+  public cliente: ClienteLogado = new ClienteLogado ;
 
-  ngOnInit(): void {
-    this.listarClientes();
+
+  constructor(private DreservaserviceService: DreservaserviceService,
+    private formBuilder: FormBuilder,
+     private dialogRef: MatDialogRef<DialogreservaComponent>,
+     private login: LoginserviceService) { }
+
+  ngOnInit(): void {    
     this.listarMedicos();
+    this.cliente = this.login.cliente;
+    if(this.cliente.role == "ADMIN") this.listarClientes();
+
     this.reservaForm = this.formBuilder.group({
       cliente : ['', Validators.required],
       medico : ['', Validators.required],
@@ -47,7 +58,7 @@ export class DialogreservaComponent implements OnInit {
   
 
   addReserva(){
-    this.reserva.cliente.id = this.reservaForm.value.cliente;
+    this.reserva.cliente.id = this.cliente.role == "ADMIN" ? this.reservaForm.value.cliente : this.cliente.id ;
     this.reserva.data = moment(this.reservaForm.value.data).format("DD/MM/yyyy",);
     this.reserva.medico.crm = this.reservaForm.value.medico ;
     this.reserva.horaInicio = this.reservaForm.value.horaInicio;

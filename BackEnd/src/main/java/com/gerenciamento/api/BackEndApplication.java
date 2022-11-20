@@ -53,7 +53,7 @@ public class BackEndApplication implements CommandLineRunner{
 		Categoria cat2 = new Categoria(null, "Bradesco Seguros");
 
 		Cliente p1 = new Cliente(null, "Admin", 159053948, 3213, "$2a$12$I0Ag1rk5SNxXSD/sCF5ti.13uQLwFnM8pNIctbyEJ4rkQCx9jB232", "ADMIN",cat1);
-		Cliente p2 = new Cliente(null, "Auret", 23132, 9192, "$2a$12$I0Ag1rk5SNxXSD/sCF5ti.13uQLwFnM8pNIctbyEJ4rkQCx9jB232", "USER",cat2);
+		Cliente p2 = new Cliente(null, "Auret", 23132, 9192, "$2a$12$I0Ag1rk5SNxXSD/sCF5ti.13uQLwFnM8pNIctbyEJ4rkQCx9jB232", "ADMIN",cat2);
 		Cliente p3 = new Cliente(null, "Thay", 32141,3432 , "$2a$12$I0Ag1rk5SNxXSD/sCF5ti.13uQLwFnM8pNIctbyEJ4rkQCx9jB232", "USER",cat1);
 		Cliente p4 = new Cliente(null, "Andrey", 15905338, 3211, "$2a$12$I0Ag1rk5SNxXSD/sCF5ti.13uQLwFnM8pNIctbyEJ4rkQCx9jB232", "USER",cat1);
 

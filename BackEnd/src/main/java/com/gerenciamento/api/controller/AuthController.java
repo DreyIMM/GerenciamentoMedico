@@ -28,7 +28,7 @@ public class AuthController {
 			String currentPrincipalName = authentication.getName();
 			Cliente cliAtual = paciente.findByUsername(currentPrincipalName);
 			return new ClienteLogadoDTO(
-					cliAtual.getId(), cliAtual.getNome(), cliAtual.getRole() ,currentPrincipalName);
+					cliAtual.getId(), cliAtual.getNome(), cliAtual.getRole(), currentPrincipalName);
 		
 	}
 	

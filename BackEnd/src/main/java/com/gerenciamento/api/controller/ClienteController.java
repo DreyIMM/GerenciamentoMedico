@@ -35,7 +35,7 @@ public class ClienteController {
 	
 	@PostMapping("/cliente")
 	Cliente novaCategoria(@RequestBody Cliente novoCliente) {
-		return _repository.save(novoCliente);
+		return _repository.execute(novoCliente);
 	}
 	
 	

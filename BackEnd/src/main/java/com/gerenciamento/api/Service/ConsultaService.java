@@ -50,5 +50,9 @@ public class ConsultaService {
 		return consultaRepository.existsByHoraInicio(horaInicio);
 	}
 	
+	public List<Consulta> findByHorarioFetchData(Medico id, String data){
+		return consultaRepository.findByHorarioFetchData(id, data);
+		
+	}
 
 }

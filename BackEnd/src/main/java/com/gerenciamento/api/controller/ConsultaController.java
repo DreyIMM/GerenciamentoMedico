@@ -21,7 +21,7 @@ import com.gerenciamento.api.Service.ConsultaService;
 import com.gerenciamento.api.Service.MedicoService;
 import com.gerenciamento.api.Models.Cliente;
 import com.gerenciamento.api.Models.Consulta;
-import com.gerenciamento.api.repository.ConsultaCustomRepository;
+import com.gerenciamento.api.Models.Medico;
 import com.gerenciamento.api.repository.MedicoRepository;
 
 
@@ -67,6 +67,16 @@ public class ConsultaController {
 		List<Consulta> lista= _serviceConsulta.ConsultaPaciente(id);
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(lista);
+	}
+	
+	
+	@GetMapping("consultas/horario/{id}/{data}")
+	public ResponseEntity<List<Consulta>> findHorarioDisponivel(@PathVariable Medico id, @PathVariable String data ){
+		
+		List<Consulta> lista = _serviceConsulta.findByHorarioFetchData(id, data);
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body(lista);
+		
 	}
 	
 	

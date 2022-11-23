@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.gerenciamento.api.Models.Cliente;
@@ -24,6 +25,9 @@ public class ClienteService implements UserDetailsService {
 	
 	
 	final ClienteRepository clienteRepository;
+	private BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	  }
 	
 	public ClienteService(ClienteRepository clienteRepository) {
 		this.clienteRepository = clienteRepository;
@@ -51,6 +55,18 @@ public class ClienteService implements UserDetailsService {
 		}
 		return new CustomClienteDetails(cliente);
 	}
+	
+	public Cliente execute(Cliente user) {
+		
+		Cliente existsUser = clienteRepository.findByUsername(user.getNome());
+		  if (existsUser != null) {
+		      throw new RuntimeException("Usuário já existente!");
+		  }
+
+		  user.setSenha(passwordEncoder().encode(user.getSenha()));
+		  Cliente createdUser = clienteRepository.save(user);
+		  return createdUser;
+	  }
 	
 
 	

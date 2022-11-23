@@ -20,6 +20,9 @@ public interface ConsultaRepository extends JpaRepository<Consulta, Long> {
 	
 	@Query("SELECT u FROM Consulta u WHERE u.cliente = :id")
 	List <Consulta> findByConsulta(@Param("id") Cliente id);
+	
+	@Query("SELECT u FROM Consulta u WHERE u.medico = :medicoId and u.data = :data")
+	List <Consulta> findByHorarioFetchData(@Param("medicoId") Medico id, @Param("data") String data);
 
 	 
 }

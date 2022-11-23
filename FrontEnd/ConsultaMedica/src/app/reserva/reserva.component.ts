@@ -24,7 +24,7 @@ export class ReservaComponent implements OnInit {
     this.dialog.open(DialogreservaComponent, {
        width: '30%',
     }).afterClosed().subscribe(r=>{
-      this.listarReservas();
+      this.cliente.role == "USER" ? this.reservarFetchPaciente(): this.listarReservas();
     });
     
   }

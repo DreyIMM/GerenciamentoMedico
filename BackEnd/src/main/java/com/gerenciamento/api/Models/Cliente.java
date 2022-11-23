@@ -47,7 +47,7 @@ public class Cliente implements Serializable{
 	public Cliente() { 	}
 	
 	public Cliente(Long id, @NotNull String nome, @NotNull int cpf, @NotNull int carteirinha, @NotNull String senha,
-			@NotNull String role, com.gerenciamento.api.Models.@NotNull Categoria categoria) {
+			String role, com.gerenciamento.api.Models.@NotNull Categoria categoria) {
 		Id = id;
 		username = nome;
 		Cpf = cpf;

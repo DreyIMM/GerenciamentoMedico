@@ -64,6 +64,7 @@ public class ClienteService implements UserDetailsService {
 		  }
 
 		  user.setSenha(passwordEncoder().encode(user.getSenha()));
+		  user.setRole("USER");
 		  Cliente createdUser = clienteRepository.save(user);
 		  return createdUser;
 	  }

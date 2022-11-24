@@ -28,6 +28,8 @@ import { registerLocaleData } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { LoginserviceService } from './login/loginservice.service';
 import { HomeComponent } from './home/home.component';
+import { DialogcategoriaComponent } from './categoria/dialogCategoria/dialogCategoria.component';
+import { DialogMedicoComponent } from './medico/dialogMedico/dialogMedico.component';
 
 registerLocaleData(localePT);
 
@@ -45,7 +47,9 @@ registerLocaleData(localePT);
     ReservaComponent,
     DialogreservaComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    DialogcategoriaComponent,
+    DialogMedicoComponent
   ],
   imports: [
     BrowserModule,

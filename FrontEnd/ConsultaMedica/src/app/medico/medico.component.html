@@ -1,7 +1,7 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Medico</h1>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CadastrarPlano">
-        Novo
+    <button (click)="openDialog(); isEditar = false" mat-raised-button color="primary">
+      Novo
     </button>
 </div>
 <div class="row">             
@@ -21,7 +21,7 @@
                         <td>{{medico.crm}}</td>
                         <td>{{medico.nome}}</td>
                         <td>
-                          <button mat-icon-button color="primary" data-toggle="modal" data-target="#editarPlano">
+                          <button mat-icon-button color="primary" (click)="openDialog();isEditar = true">
                             <mat-icon>edit</mat-icon>
                           </button>
                           <button mat-icon-button color="warn" >
@@ -34,35 +34,4 @@
             </div>
         </div>
     </div>
-</div>
-
-<!-- Modal Adicionar -->
-<div class="modal fade" id="CadastrarPlano" tabindex="-1" role="dialog" aria-labelledby="CadastrarPlano" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Plano de saúde</h5>
-        <button type="button" class="btn-close" data-dismiss="modal">
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="row">
-            
-            <div class="col">
-              <input type="number" name="crm" class="form-control m-2" placeholder="CRM" [(ngModel)]="medico.crm">
-
-              <input type="text" name="name" class="form-control m-2" placeholder="Nome" [(ngModel)]="medico.nome">
-            </div>
-
-
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" id="voltar" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
-        <button type="button" class="btn btn-primary" (click)="CadastrarMedicos()">Cadastrar</button>
-      </div>
-    </div>
-  </div>
 </div>

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MedicoModel } from './medico.models';
 import { MedicoService } from './medico.service';
-
+import { MatDialog} from '@angular/material/dialog';
+import { DialogMedicoComponent } from './dialogMedico/dialogMedico.component';
+import { Subject } from 'rxjs';
 @Component({
   selector: 'app-medico',
   templateUrl: './medico.component.html',
@@ -9,15 +11,30 @@ import { MedicoService } from './medico.service';
 })
 export class MedicoComponent implements OnInit {
 
+  eventsSubject: Subject<void> = new Subject<void>();
+
+  emitEventToChild() {
+    this.eventsSubject.next();
+  }
+
   medico: MedicoModel = new MedicoModel();
   medicos: Array<any> = new Array();
-
-  constructor(private medicoService: MedicoService) {}
+  isEditar:boolean=false;
+  constructor(private medicoService: MedicoService,private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.listarMedicos();
   }
 
+  openDialog() {
+    this.dialog.open(DialogMedicoComponent, {
+       width: '30%',
+       data: this.isEditar
+    }).afterClosed().subscribe(r=>{
+      this.listarMedicos();
+    });
+  }
+  
   listarMedicos(){
     this.medicoService.listarMedicos().subscribe(medicos =>{
         this.medicos = medicos;

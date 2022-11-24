@@ -1,0 +1,14 @@
+<h1 mat-dialog-title *ngIf="!isEditar">Plano de Saúde</h1>
+<h1 mat-dialog-title *ngIf="isEditar">Editar Plano</h1>
+<div mat-dialog-content>
+    <mat-form-field appearance="outline">
+        <mat-label>Nome</mat-label>
+        <input matInput placeholder ="Nome"  [(ngModel)]="categoria.nome"> 
+    </mat-form-field>
+    <div mat-dialog-action [align]="'end'">
+        <button mat-raised-button color="warn" mat-dialog-close="">Voltar</button>
+        <button *ngIf ="!isEditar"style="margin-left: 8px;" (click)="cadastrarCategoria()" mat-raised-button color="primary">Cadastrar</button>
+        <button *ngIf ="isEditar"style="margin-left: 8px;" (click)="editarCategoria(this.categoria)" mat-raised-button color="primary">Editar</button>
+      </div>
+</div>
+

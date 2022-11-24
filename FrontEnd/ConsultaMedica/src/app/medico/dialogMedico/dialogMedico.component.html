@@ -1,0 +1,19 @@
+<h1 mat-dialog-title *ngIf="!isEditar">Cadastrar Médico</h1>
+<h1 mat-dialog-title *ngIf="isEditar">Editar Médico</h1>
+<div mat-dialog-content>
+    <mat-form-field appearance="outline">
+        <mat-label>CRM</mat-label>
+        <input matInput [(ngModel)]="medico.crm">
+    </mat-form-field>
+<br>
+    <mat-form-field appearance="outline">
+        <mat-label>Nome</mat-label>
+        <input matInput [(ngModel)]="medico.nome">
+    </mat-form-field> 
+
+
+    <div mat-dialog-action [align]="'end'">
+        <button mat-raised-button color="warn" mat-dialog-close="">Voltar</button>
+        <button style="margin-left: 8px;" (click)="CadastrarMedicos()" mat-raised-button color="primary">Cadastrar</button>
+      </div>
+</div>

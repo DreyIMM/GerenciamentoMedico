@@ -70,17 +70,14 @@ public class ConsultaController {
 	}
 	
 	
-	@GetMapping("consultas/horario/{id}/{data}")
-	public ResponseEntity<List<Consulta>> findHorarioDisponivel(@PathVariable Medico id, @PathVariable String data ){
+	@GetMapping("consultas/{id}/{data}")
+	public ResponseEntity<List<String>> findHorarioDisponivel(@PathVariable Medico id, @PathVariable String data ){
 		
-		List<Consulta> lista = _serviceConsulta.findByHorarioFetchData(id, data);
+		List<String> lista = _serviceConsulta.findByHorarioFetchData(id, data);
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(lista);
 		
-	}
-	
-	
-	
+	}	
 	
 	
 }

@@ -24,7 +24,7 @@ export class ReservaComponent implements OnInit {
     this.dialog.open(DialogreservaComponent, {
        width: '30%',
     }).afterClosed().subscribe(r=>{
-      this.listarReservas();
+      this.cliente.role == "USER" ? this.reservarFetchPaciente(): this.listarReservas();
     });
     
   }
@@ -37,7 +37,6 @@ export class ReservaComponent implements OnInit {
   listarReservas(){
     this.ReservaService.listarTodasReservas().subscribe(reserva =>{
       this.reservas = reserva
-      console.log(reserva)
     }, err =>{
       console.log(err);
     })

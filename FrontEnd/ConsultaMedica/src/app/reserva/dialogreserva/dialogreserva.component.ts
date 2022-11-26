@@ -6,6 +6,7 @@ import * as moment from 'moment';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ClienteLogado } from '../../cliente/clienteLogado';
 import { LoginserviceService } from '../../login/loginservice.service';
+import { MedicoModel } from 'src/app/medico/medico.models';
 
 @Component({
   selector: 'app-dialogreserva',
@@ -14,17 +15,20 @@ import { LoginserviceService } from '../../login/loginservice.service';
 })
 export class DialogreservaComponent implements OnInit {
 
+  horarioFixos: string[] = ["07:00", "08:00", "09:00" , "10:00" , "11:00" , "14:00" , "15:00" , "16:00"]
   medicos: Array<any> = new Array();
   clientes: Array<any> = new Array();
   reservaForm !: FormGroup
   reserva: Reserva = new Reserva;
   public cliente: ClienteLogado = new ClienteLogado ;
 
+  medico: MedicoModel[] = [];
+  data: string = '';
 
   constructor(private DreservaserviceService: DreservaserviceService,
     private formBuilder: FormBuilder,
      private dialogRef: MatDialogRef<DialogreservaComponent>,
-     private login: LoginserviceService) { }
+     private login: LoginserviceService){ }
 
   ngOnInit(): void {    
     this.listarMedicos();
@@ -59,7 +63,7 @@ export class DialogreservaComponent implements OnInit {
 
   addReserva(){
     this.reserva.cliente.id = this.cliente.role == "ADMIN" ? this.reservaForm.value.cliente : this.cliente.id ;
-    this.reserva.data = moment(this.reservaForm.value.data).format("DD/MM/yyyy",);
+    this.reserva.data = moment(this.reservaForm.value.data).format("yyy-MM-DD");
     this.reserva.medico.crm = this.reservaForm.value.medico ;
     this.reserva.horaInicio = this.reservaForm.value.horaInicio;
     
@@ -71,4 +75,29 @@ export class DialogreservaComponent implements OnInit {
       console.log('Erro ao salvar reserva' ,err);
     })
   }
+
+  medicoSelect(value: any){
+    this.medico = value;
+  }
+
+  dataSelect(value:any){
+    this.data = moment(value).format("yyy-MM-DD");
+    this.listarHorarioDisponiveis(this.medico, this.data);
+  }
+
+  listarHorarioDisponiveis(medico:any, data:any){
+      this.DreservaserviceService.retornarHorarioFree(medico,data).subscribe(horarioFree =>{
+        
+       this.horarioFixos = this.horarioFixos.filter((n)=>{
+          return !horarioFree.includes(n);
+        })
+
+        console.log(this.horarioFixos)
+        
+      }, err=>{
+        console.log("Erro ao listar os horarios", err);
+      })  
+  }
+
+
 }

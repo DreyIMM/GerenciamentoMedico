@@ -12,7 +12,6 @@ import { DialogClienteComponent } from './dialogCliente/dialogCliente.component'
 export class ClienteComponent implements OnInit {
 
   clientes: Cliente[] = []
-  isEditar: boolean = false;
 
   constructor(private clienteService: ClienteService,public dialog:MatDialog) { }
 
@@ -23,7 +22,6 @@ export class ClienteComponent implements OnInit {
   openDialog() {
     this.dialog.open(DialogClienteComponent, {
        width: '30%',
-       data: this.isEditar
     }).afterClosed().subscribe(r=>{
       this.listarClientes();
     });

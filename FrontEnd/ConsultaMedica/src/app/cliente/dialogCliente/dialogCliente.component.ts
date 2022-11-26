@@ -17,7 +17,6 @@ export class DialogClienteComponent {
         @Inject(MAT_DIALOG_DATA)public data:ClienteComponent
         ){ }
         
-      isEditar= false;
       clientes: Cliente[] = []
     
 

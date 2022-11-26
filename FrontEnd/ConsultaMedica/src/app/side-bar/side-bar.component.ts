@@ -17,7 +17,6 @@ export class SideBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.cliente = this.login.cliente
-    console.log(this.cliente);
 
   }
 

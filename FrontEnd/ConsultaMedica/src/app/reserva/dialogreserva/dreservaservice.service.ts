@@ -25,4 +25,8 @@ export class DreservaserviceService {
     return this.http.get<Cliente[]>(`${API_PATH}clientes`, this.login.getOptions());
   }
 
+  retornarHorarioFree(medico: any, data:any): Observable<any>{
+    return this.http.get(`${API_PATH}consultas/${medico}/${data}`,this.login.getOptions()); 
+  }
+
 }

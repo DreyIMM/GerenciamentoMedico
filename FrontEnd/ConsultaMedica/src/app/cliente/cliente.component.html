@@ -22,7 +22,7 @@
                         <td>{{cliente.categoria.nome}}</td>
                         <td>{{cliente.numCarteirinha}}</td>
                         <td>
-                          <button mat-icon-button color="primary" data-toggle="modal" data-target="#editarPlano">
+                          <button mat-icon-button color="primary" (click)="openDialog();isEditar = true"> 
                             <mat-icon>edit</mat-icon>
                           </button>
                           <button button mat-icon-button color="warn">    

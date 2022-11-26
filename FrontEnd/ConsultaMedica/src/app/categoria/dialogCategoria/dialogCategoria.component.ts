@@ -15,6 +15,8 @@ export class DialogcategoriaComponent implements OnInit {
   categoria: CategoriaModel= new CategoriaModel;
   categorias: Array<any> = new Array();
  
+
+  // isEditar tem que ser um observable aqui
   isEditar = this.data;
   ngOnInit(): void {
     console.log(this.data)

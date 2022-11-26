@@ -30,6 +30,7 @@ import { LoginserviceService } from './login/loginservice.service';
 import { HomeComponent } from './home/home.component';
 import { DialogcategoriaComponent } from './categoria/dialogCategoria/dialogCategoria.component';
 import { DialogMedicoComponent } from './medico/dialogMedico/dialogMedico.component';
+import { DialogClienteComponent } from './cliente/dialogCliente/dialogCliente.component';
 
 registerLocaleData(localePT);
 
@@ -49,7 +50,8 @@ registerLocaleData(localePT);
     LoginComponent,
     HomeComponent,
     DialogcategoriaComponent,
-    DialogMedicoComponent
+    DialogMedicoComponent,
+    DialogClienteComponent
   ],
   imports: [
     BrowserModule,

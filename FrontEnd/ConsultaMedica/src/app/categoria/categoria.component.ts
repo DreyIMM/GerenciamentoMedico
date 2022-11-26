@@ -33,7 +33,6 @@ export class CategoriaComponent implements OnInit {
       }).afterClosed().subscribe(r=>{
         this.listarCategorias();
       });
-      
   }
 
   listarCategorias(){

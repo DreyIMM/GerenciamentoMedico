@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from './cliente';
 import { ClienteService } from './cliente.service';
+import { MatDialog } from '@angular/material/dialog'; 
+import { DialogClienteComponent } from './dialogCliente/dialogCliente.component';
 
 @Component({
   selector: 'app-cliente',
@@ -10,12 +12,22 @@ import { ClienteService } from './cliente.service';
 export class ClienteComponent implements OnInit {
 
   clientes: Cliente[] = []
+  isEditar: boolean = false;
 
-  constructor(private clienteService: ClienteService) { }
+  constructor(private clienteService: ClienteService,public dialog:MatDialog) { }
 
   ngOnInit(): void {
     this.listarClientes();
   }
+  
+  openDialog() {
+    this.dialog.open(DialogClienteComponent, {
+       width: '30%',
+       data: this.isEditar
+    }).afterClosed().subscribe(r=>{
+      this.listarClientes();
+    });
+}
 
   listarClientes(){
     this.clienteService.listarClientes().subscribe(clientes =>{

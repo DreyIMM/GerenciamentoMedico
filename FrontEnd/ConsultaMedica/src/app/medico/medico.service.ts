@@ -26,7 +26,7 @@ export class MedicoService {
   } 
 
   atualizarMedicos(id:any, medico: MedicoModel): Observable<any>{
-    return this.http.put(`${API_PATH}medico/${id}`, medico);
+    return this.http.put(`${API_PATH}medico/${id}`, medico, this.login.getOptions());
   }
 
 }

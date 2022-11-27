@@ -1,6 +1,6 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Medico</h1>
-    <button (click)="openDialog(); isEditar = false" mat-raised-button color="primary">
+    <h1 class="h3 mb-0 text-gray-800">Médicos</h1>
+    <button (click)=" isEditar = false;openDialog()" mat-raised-button color="primary">
       Novo
     </button>
 </div>
@@ -21,7 +21,7 @@
                         <td>{{medico.crm}}</td>
                         <td>{{medico.nome}}</td>
                         <td>
-                          <button mat-icon-button color="primary" (click)="openDialog();isEditar = true">
+                          <button mat-icon-button color="primary" (click)="isEditar = true;openDialog()">
                             <mat-icon>edit</mat-icon>
                           </button>
                           <button mat-icon-button color="warn" >

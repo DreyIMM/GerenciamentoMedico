@@ -19,4 +19,8 @@ export class NavbarComponent implements OnInit {
     this.cliente = this.login.cliente
   }
 
+  logout = () => {
+    this.login.signout();
+  }
+
 }

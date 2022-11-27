@@ -43,4 +43,11 @@ export class LoginserviceService {
     this.cliente = cliente;
   }
 
+  signout = () => {
+    this.username = "";
+    this.password = "";
+    this.logado = false;
+    this.cliente = new ClienteLogado();
+  }
+
 }

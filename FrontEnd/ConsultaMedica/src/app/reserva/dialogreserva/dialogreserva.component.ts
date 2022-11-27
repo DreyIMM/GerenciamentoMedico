@@ -15,7 +15,7 @@ import { MedicoModel } from 'src/app/medico/medico.models';
 })
 export class DialogreservaComponent implements OnInit {
 
-  horarioFixos: string[] = ["07:00", "08:00", "09:00" , "10:00" , "11:00" , "14:00" , "15:00" , "16:00"]
+  horarioFixos: string[] = [];
   medicos: Array<any> = new Array();
   clientes: Array<any> = new Array();
   reservaForm !: FormGroup
@@ -24,6 +24,7 @@ export class DialogreservaComponent implements OnInit {
 
   medico: MedicoModel[] = [];
   data: string = '';
+  apresentaHoraio = false;
 
   constructor(private DreservaserviceService: DreservaserviceService,
     private formBuilder: FormBuilder,
@@ -78,22 +79,24 @@ export class DialogreservaComponent implements OnInit {
 
   medicoSelect(value: any){
     this.medico = value;
+    if(!(this.data == '')) this.listarHorarioDisponiveis(this.medico, this.data);
+
+
   }
 
   dataSelect(value:any){
     this.data = moment(value).format("yyy-MM-DD");
     this.listarHorarioDisponiveis(this.medico, this.data);
+    this.apresentaHoraio = true;
   }
 
   listarHorarioDisponiveis(medico:any, data:any){
       this.DreservaserviceService.retornarHorarioFree(medico,data).subscribe(horarioFree =>{
-        
-       this.horarioFixos = this.horarioFixos.filter((n)=>{
+        this.horarioFixos = ["07:00", "08:00", "09:00" , "10:00" , "11:00" , "14:00" , "15:00" , "16:00"] ;
+        this.horarioFixos = this.horarioFixos.filter((n)=>{
           return !horarioFree.includes(n);
         })
 
-        console.log(this.horarioFixos)
-        
       }, err=>{
         console.log("Erro ao listar os horarios", err);
       })  

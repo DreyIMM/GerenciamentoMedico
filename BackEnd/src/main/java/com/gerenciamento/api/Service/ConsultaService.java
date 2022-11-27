@@ -29,7 +29,12 @@ public class ConsultaService {
 	public Consulta save(Consulta consultaMedicaModels) {
 		return consultaRepository.save(consultaMedicaModels);
 	}
-
+	
+	public void excluir(Long id) {
+		 consultaRepository.deleteById(id);
+	}
+	
+	
 	public List<Consulta> TodasConsultas() {
 		return consultaRepository.findAll();
 	}

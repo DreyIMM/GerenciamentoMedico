@@ -56,4 +56,8 @@ public class MedicoController {
 		_repository.excluir(id);
 	}
 	
+	@PutMapping("/medico/{id}")
+	ResponseEntity<Object> editarMedico(@PathVariable("crm") Integer crm, @RequestBody Medico medicoEditado ){
+		return ResponseEntity.status(HttpStatus.OK).body(_repository.save(medicoEditado));
+	}
 }

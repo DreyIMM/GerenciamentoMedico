@@ -28,6 +28,18 @@ export class DialogMedicoComponent implements OnInit {
     })
   }
 
+  
+  atualizarMedicos(id:number){
+    this.medicoService.atualizarMedicos(this.medico.crm,this.medico).subscribe(medico => {
+      this.medico= new MedicoModel();
+      console.log(this.medico)
+      this.listarMedicos();
+      this.aoSalvarFechar();
+    },err=>{
+      console.log('Erro ao editar médico',err);
+    })
+  }
+  
   aoSalvarFechar(){
     let ref= document.getElementById('voltar');
     ref?.click()
@@ -38,6 +50,7 @@ export class DialogMedicoComponent implements OnInit {
     this.medico = new MedicoModel();
     this.listarMedicos();
     this.aoSalvarFechar();
+
     }, err =>{
       console.log('Error ao cadastrar um medico', err)
     })

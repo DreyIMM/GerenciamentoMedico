@@ -11,11 +11,6 @@ import { Subject } from 'rxjs';
 })
 export class MedicoComponent implements OnInit {
 
-  eventsSubject: Subject<void> = new Subject<void>();
-
-  emitEventToChild() {
-    this.eventsSubject.next();
-  }
 
   medico: MedicoModel = new MedicoModel();
   medicos: Array<any> = new Array();
@@ -43,15 +38,6 @@ export class MedicoComponent implements OnInit {
     })
   }
 
-  CadastrarMedicos(){
-    this.medicoService.CadastrarMedicos(this.medico).subscribe(medico =>{
-    this.medico = new MedicoModel();
-    this.listarMedicos();
-    this.aoSalvarFechar();
-    }, err =>{
-      console.log('Error ao cadastrar um medico', err)
-    })
-  }
 
   AtualizarMedicos(id:number){
     this.medicoService.atualizarMedicos(id, this.medico).subscribe(medico =>{
@@ -72,9 +58,5 @@ export class MedicoComponent implements OnInit {
     })
   }
 
-  aoSalvarFechar(){
-    let ref= document.getElementById('voltar');
-    ref?.click()
-  }
 
 }

@@ -42,10 +42,13 @@ export class DialogcategoriaComponent implements OnInit {
     })
   }
 
-  editarCategoria(categoria: CategoriaModel){
-    console.log("a")
+  atualizarCategoria(id:number){
+    this.categoriaService.atualizarCategoria(id, this.categoria).subscribe(categoria =>{
+      this.categoria = new CategoriaModel();
+      this.listarCategorias();
+      this.aoSalvarFechar();
+    })
   }
-
 
   aoSalvarFechar(){
     let ref= document.getElementById('voltar');

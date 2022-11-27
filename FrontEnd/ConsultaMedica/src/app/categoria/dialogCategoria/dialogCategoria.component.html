@@ -8,7 +8,7 @@
     <div mat-dialog-action [align]="'end'">
         <button mat-raised-button color="warn" mat-dialog-close="">Voltar</button>
         <button *ngIf ="!isEditar"style="margin-left: 8px;" (click)="cadastrarCategoria()" mat-raised-button color="primary">Cadastrar</button>
-        <button *ngIf ="isEditar"style="margin-left: 8px;" (click)="editarCategoria(this.categoria)" mat-raised-button color="primary">Editar</button>
+        <button *ngIf ="isEditar"style="margin-left: 8px;" (click)="atualizarCategoria(categoria.id)" mat-raised-button color="primary">Editar</button>
       </div>
 </div>
 

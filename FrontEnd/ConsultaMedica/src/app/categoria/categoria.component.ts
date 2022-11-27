@@ -15,16 +15,11 @@ export class CategoriaComponent implements OnInit {
   categorias: Array<any> = new Array();
   isEditar:boolean=false;
 
-  
-  constructor(private categoriaService: CategoriaService,  public dialog:MatDialog) { 
-    
-  }
-
+  constructor(private categoriaService: CategoriaService,  public dialog:MatDialog) {  }
 
   ngOnInit(): void {
     this.listarCategorias()
   }
-
 
     openDialog() {
       this.dialog.open(DialogcategoriaComponent, {
@@ -43,17 +38,6 @@ export class CategoriaComponent implements OnInit {
     })
   }
 
-  cadastrarCategoria(){
-    this.categoriaService.CadastrarCategoria(this.categoria).subscribe(categoria =>{
-    this.categoria = new CategoriaModel();
-    this.listarCategorias();
-    this.aoSalvarFechar();  
-      
-    }, err =>{
-      console.log('Error ao cadastrar a categoria', err)
-    })
-  }
-
   excluirCategoria(id: number){
     this.categoriaService.excluirCategoria(id).subscribe(categoria =>{
         this.listarCategorias();
@@ -62,23 +46,6 @@ export class CategoriaComponent implements OnInit {
     })
   }
 
-  atualizarCateogira(id:number){
-    this.categoriaService.atualizarCategoria(id, this.categoria).subscribe(categoria =>{
-      this.categoria = new CategoriaModel();
-      this.listarCategorias();
-      this.aoSalvarFechar();
-
-    })
-  }
-
-  editarCategoria(categoria: CategoriaModel){
-    
-  }
-
-
-  aoSalvarFechar(){
-    let ref= document.getElementById('voltar');
-    ref?.click()
-  }
+  
 
 }

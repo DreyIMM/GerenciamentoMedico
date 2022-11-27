@@ -15,6 +15,6 @@
     <div mat-dialog-action [align]="'end'">
         <button mat-raised-button color="warn" mat-dialog-close="">Voltar</button>
         <button *ngIf ="!isEditar" style="margin-left: 8px;" (click)="CadastrarMedicos()" mat-raised-button color="primary">Cadastrar</button>
-        <button *ngIf ="isEditar"style="margin-left: 8px;" (click)="CadastrarMedicos()" mat-raised-button color="primary">Editar</button>
+        <button *ngIf ="isEditar"style="margin-left: 8px;" (click)="AtualizarMedicos(medico.crm)" mat-raised-button color="primary">Editar</button>
       </div>
 </div>

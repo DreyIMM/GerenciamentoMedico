@@ -26,7 +26,7 @@ export class CategoriaService {
     } 
 
     atualizarCategoria(id:any, categoria: CategoriaModel): Observable<any>{
-      return this.http.put(`${API_PATH}categoria/${id}`,categoria);
+      return this.http.put(`${API_PATH}categoria/${id}`,categoria, this.login.getOptions());
     }
    
 }

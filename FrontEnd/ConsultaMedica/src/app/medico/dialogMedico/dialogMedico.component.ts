@@ -43,5 +43,15 @@ export class DialogMedicoComponent implements OnInit {
     })
     console.log(this.medicos)
   }
+  AtualizarMedicos(id:number){
+    this.medicoService.atualizarMedicos(id, this.medico).subscribe(medico =>{
+      this.medico = new MedicoModel();
+      this.listarMedicos();
+      this.aoSalvarFechar();
+    }, err =>{
+      console.log('Error ao editar um médico', err)
+    })
+
+  }
   
 }

@@ -53,6 +53,17 @@ export class MedicoComponent implements OnInit {
     })
   }
 
+  AtualizarMedicos(id:number){
+    this.medicoService.atualizarMedicos(id, this.medico).subscribe(medico =>{
+      this.medico = new MedicoModel();
+      this.listarMedicos();
+      this.aoSalvarFechar();
+    }, err =>{
+      console.log('Error ao editar um médico', err)
+    })
+
+  }
+
   excluirMedico(id: number){
     this.medicoService.excluirMedico(id).subscribe(medico =>{
         this.listarMedicos();

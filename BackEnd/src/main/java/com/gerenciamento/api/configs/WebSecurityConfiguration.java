@@ -33,16 +33,16 @@ public class WebSecurityConfiguration {
     }
 	
 	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-		    .antMatchers(HttpMethod.OPTIONS).permitAll()
-	        .antMatchers("/login/**", "/medicos", "/consultas**").permitAll()
-	        .antMatchers("/").hasAuthority("USER")
-	        .antMatchers("/medico","/clientes/**","/categorias/**", "/categoria/**").hasAuthority("ADMIN")
-	        .anyRequest().authenticated()
-	        .and()
-	        .httpBasic();
-	    http.csrf().disable();
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+            .antMatchers(HttpMethod.OPTIONS).permitAll()
+            .antMatchers("/login/", "/medicos", "/consultas").permitAll()
+            .antMatchers("/").hasAuthority("USER")
+            .antMatchers("/medico","/clientes/","/categorias/", "/categoria/**").hasAuthority("ADMIN")
+            .anyRequest().authenticated()
+            .and()
+            .httpBasic();
+        http.csrf().disable();
         return http.build();
     }
 	

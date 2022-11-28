@@ -14,6 +14,7 @@ import { LoginserviceService } from '../login/loginservice.service';
 })
 export class ReservaComponent implements OnInit {
 
+  reserva: Reserva = new Reserva();
   reservas: Reserva[] =[]
 
   public cliente: ClienteLogado = new ClienteLogado ;
@@ -47,6 +48,15 @@ export class ReservaComponent implements OnInit {
       this.reservas = result;
     })
   }  
+
+  excluirReserva(id: number){
+    this.ReservaService.excluirReserva(id).subscribe(reserva =>{
+      this.listarReservas();
+    },err=>{
+      alert("Consulta não excluida");
+    })
+
+  }
 
 
 }

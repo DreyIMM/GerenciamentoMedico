@@ -17,6 +17,10 @@ export class ReservaService {
     return this.http.get<Reserva[]>(`${API_PATH}consultas`, this.login.getOptions());
   } 
 
+  excluirReserva(id:number){
+    return this.http.delete(`${API_PATH}consultas/${id}`, this.login.getOptions());
+  } 
+
   reservaFetchPaciente(id:any): Observable<Reserva[]>{
     return this.http.get<Reserva[]>(`${API_PATH}consultas/${id}`, this.login.getOptions());
     

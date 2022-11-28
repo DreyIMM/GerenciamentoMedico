@@ -4,6 +4,8 @@ import { MedicoService } from './medico.service';
 import { MatDialog} from '@angular/material/dialog';
 import { DialogMedicoComponent } from './dialogMedico/dialogMedico.component';
 import { Subject } from 'rxjs';
+import { FormControl, FormGroup } from '@angular/forms'
+
 @Component({
   selector: 'app-medico',
   templateUrl: './medico.component.html',
@@ -12,23 +14,29 @@ import { Subject } from 'rxjs';
 export class MedicoComponent implements OnInit {
 
 
+
   medico: MedicoModel = new MedicoModel();
   medicos: Array<any> = new Array();
   isEditar:boolean=false;
+  crm:number =10;
+  dados:any;
   constructor(private medicoService: MedicoService,private dialog: MatDialog) {}
+
 
   ngOnInit(): void {
     this.listarMedicos();
   }
 
-  openDialog() {
+  openDialog(dados:any){
     this.dialog.open(DialogMedicoComponent, {
        width: '30%',
-       data: this.isEditar
+       data: dados
+                // flag:this.isEditar
     }).afterClosed().subscribe(r=>{
       this.listarMedicos();
     });
   }
+  
   
   listarMedicos(){
     this.medicoService.listarMedicos().subscribe(medicos =>{
@@ -39,7 +47,7 @@ export class MedicoComponent implements OnInit {
   }
 
 
-  AtualizarMedicos(id:number){
+  atualizarMedicos(id:number){
     this.medicoService.atualizarMedicos(id, this.medico).subscribe(medico =>{
       this.medico = new MedicoModel();
       this.listarMedicos();
@@ -49,6 +57,12 @@ export class MedicoComponent implements OnInit {
     })
 
   }
+
+  aoSalvarFechar(){
+    let ref= document.getElementById('voltar');
+    ref?.click()
+  }
+
 
   excluirMedico(id: number){
     this.medicoService.excluirMedico(id).subscribe(medico =>{

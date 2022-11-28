@@ -1,20 +1,22 @@
-<h1 mat-dialog-title *ngIf="!isEditar">Cadastrar Médico</h1>
-<h1 mat-dialog-title *ngIf="isEditar">Editar Médico</h1>
+<form [formGroup]="medicoForm">
+
+<h1 mat-dialog-title *ngIf="!_isEditar">{{action}} Médico</h1>
+<h1 mat-dialog-title *ngIf="_isEditar">{{action}} Médico</h1>
 <div mat-dialog-content>
-    <mat-form-field  appearance="outline">
+    <mat-form-field  appearance="outline" ng-disabled =>
         <mat-label>CRM</mat-label>
-        <input matInput [(ngModel)]="medico.crm">
+        <input [hidden]="action == 'Atualizar' " formControlName="crm" matInput [value]="medico.crm">
     </mat-form-field>
 <br>
     <mat-form-field appearance="outline">
         <mat-label>Nome</mat-label>
-        <input matInput [(ngModel)]="medico.nome">
+        <input formControlName="nome" matInput [value]="medico.nome">
     </mat-form-field> 
 
 
     <div mat-dialog-action [align]="'end'">
         <button mat-raised-button color="warn" mat-dialog-close="">Voltar</button>
-        <button *ngIf ="!isEditar" style="margin-left: 8px;" (click)="CadastrarMedicos()" mat-raised-button color="primary">Cadastrar</button>
-        <button *ngIf ="isEditar"style="margin-left: 8px;" (click)="AtualizarMedicos(medico.crm)" mat-raised-button color="primary">Editar</button>
+        <button  style="margin-left: 8px;" (click)="CadastrarMedicos()" mat-raised-button color="primary">{{action}}</button>
       </div>
 </div>
+</form>

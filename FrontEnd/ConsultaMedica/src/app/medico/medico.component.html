@@ -13,6 +13,7 @@
                       <tr>
                         <th scope="col">CRM</th>
                         <th scope="col">Nome</th>
+                        <th scope="col">Plano</th>
                         <th scope="col">Ações</th>
                       </tr>
                     </thead>
@@ -20,6 +21,7 @@
                       <tr *ngFor="let medico of medicos">
                         <td>{{medico.crm}}</td>
                         <td>{{medico.nome}}</td>
+                        <td>{{medico.categoria.nome}}</td>
                         <td>
                           <button mat-icon-button color="primary" data-toggle="modal" data-target="#editarPlano">
                             <mat-icon>edit</mat-icon>
@@ -41,7 +43,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Plano de saúde</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Novo Médico</h5>
         <button type="button" class="btn-close" data-dismiss="modal">
         </button>
       </div>
@@ -53,9 +55,14 @@
               <input type="number" name="crm" class="form-control m-2" placeholder="CRM" [(ngModel)]="medico.crm">
 
               <input type="text" name="name" class="form-control m-2" placeholder="Nome" [(ngModel)]="medico.nome">
+
+              <select [(ngModel)]="medico.categoria.id" class="form-select form-control m-2" aria-label="Plano aceito">
+                <option *ngFor="let categoria of categorias" [value]="categoria.id">       
+                    {{categoria.nome}}
+                </option>
+              </select>
+
             </div>
-
-
           </div>
         </form>
       </div>

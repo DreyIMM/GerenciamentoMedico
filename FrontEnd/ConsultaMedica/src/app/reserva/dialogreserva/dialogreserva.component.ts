@@ -15,6 +15,7 @@ import { MedicoModel } from 'src/app/medico/medico.models';
 })
 export class DialogreservaComponent implements OnInit {
 
+  minDate = new Date();
   horarioFixos: string[] = [];
   medicos: Array<any> = new Array();
   clientes: Array<any> = new Array();

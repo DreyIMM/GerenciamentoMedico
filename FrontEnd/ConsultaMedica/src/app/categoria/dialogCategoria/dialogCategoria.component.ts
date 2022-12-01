@@ -7,15 +7,18 @@ import { CategoriaService } from '../categoria.service';
 
 @Component({
   selector: 'app-dialogcategoria',
-  templateUrl: './dialogcategoria.component.html',
+  templateUrl: './dialogCategoria.component.html',
   styleUrls: ['./dialogCategoria.component.css']
 })
+
+
 export class DialogcategoriaComponent implements OnInit {
   action:string = "Cadastrar"
-  constructor(private categoriaService:CategoriaService, 
-    private dialogRef: MatDialogRef<DialogcategoriaComponent>,
-    @Inject(MAT_DIALOG_DATA)public editdata:any,
-    private formBuilder:FormBuilder) { }
+  constructor(
+      private categoriaService:CategoriaService, 
+      private dialogRef: MatDialogRef<DialogcategoriaComponent>,
+      @Inject(MAT_DIALOG_DATA)public editdata:any,
+      private formBuilder:FormBuilder) { }
 
   categoria: CategoriaModel= new CategoriaModel;
   categorias: Array<any> = new Array();
@@ -24,6 +27,7 @@ export class DialogcategoriaComponent implements OnInit {
 
   ngOnInit(): void {
     this.categoriaForm = this.formBuilder.group({
+      
       nome : ['', Validators.required],
       id : ['', Validators.required]
     });

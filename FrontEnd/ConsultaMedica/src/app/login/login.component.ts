@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { API_PATH } from 'src/environments/environment';
+import { DialogClienteComponent } from '../cliente/dialogCliente/dialogCliente.component';
+import { DialogLoginComponent } from './dialogLogin/dialogLogin.component';
 import { LoginserviceService } from './loginservice.service';
 
 @Component({
@@ -18,7 +21,7 @@ export class LoginComponent implements OnInit {
   invalidLogin = false;
   loginSucess = false;
 
-  constructor(private login: LoginserviceService, private route: Router) {
+  constructor(private login: LoginserviceService, private route: Router,public dialog:MatDialog) {
   }
 
   ngOnInit(): void {
@@ -39,6 +42,10 @@ export class LoginComponent implements OnInit {
       this.loginSucess = false; 
     });
   }
-
+  openDialog() {
+    this.dialog.open(DialogClienteComponent, {
+       width: '30%',
+    })
+}
   
 }

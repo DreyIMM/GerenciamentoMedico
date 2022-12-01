@@ -1,5 +1,8 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Pacientes</h1>
+    <button (click)="openDialog(cliente)" mat-raised-button color="primary">
+      Novo
+    </button>
 </div>
 <div class="row">             
     <div class="">
@@ -22,7 +25,7 @@
                         <td>{{cliente.categoria.nome}}</td>
                         <td>{{cliente.numCarteirinha}}</td>
                         <td>
-                          <button mat-icon-button color="primary" (click)="openDialog()"> 
+                          <button mat-icon-button color="primary" (click)="openDialog(cliente)"> 
                             <mat-icon>edit</mat-icon>
                           </button>
                           <button button mat-icon-button color="warn"> 

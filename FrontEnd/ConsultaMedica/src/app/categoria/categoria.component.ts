@@ -17,7 +17,7 @@ export class CategoriaComponent implements OnInit {
 
   categoria: CategoriaModel= new CategoriaModel;
   categorias: Array<any> = new Array();
-  isEditar:boolean=false;
+  
   id:number = 0;
   dados:any;
 

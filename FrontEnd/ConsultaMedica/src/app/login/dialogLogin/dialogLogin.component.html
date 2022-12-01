@@ -1,0 +1,17 @@
+<h1 mat-dialog-title >Plano de Saúde</h1>
+    <div mat-dialog-content>
+        <mat-form-field  appearance="outline" ng-disabled =>
+            <mat-label>Usuário</mat-label>
+            <input  matInput >
+        </mat-form-field>
+    <br>
+        <mat-form-field appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input matInput >
+        </mat-form-field> 
+    
+        <div mat-dialog-action [align]="'end'">
+            <button mat-raised-button color="warn" mat-dialog-close="">Voltar</button>
+            <button  style="margin-left: 8px;"  mat-raised-button color="primary">Aperte</button>
+          </div>
+    </div>

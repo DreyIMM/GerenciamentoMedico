@@ -1,11 +1,42 @@
-<h1 mat-dialog-title>Editar Cliente</h1>
-<div mat-dialog-content>
-    <mat-form-field appearance="outline">
-        <mat-label>Nome</mat-label>
-        <input matInput placeholder ="Nome"  [(ngModel)]="clientes"> 
-    </mat-form-field>
-    <div mat-dialog-action [align]="'end'">
-        <button mat-raised-button color="warn" mat-dialog-close="">Voltar</button>
-        <button style="margin-left: 8px;"  mat-raised-button color="primary">Editar</button>
-      </div>
-</div>
+<form [formGroup]="clienteForm">
+    <h1 mat-dialog-title >{{action}} Cliente</h1>
+    <div mat-dialog-content>
+        <mat-form-field  appearance="outline" ng-disabled =>
+            <mat-label>ID</mat-label>
+            <input [hidden]="true" formControlName="id" matInput [value]="cliente.id">
+        </mat-form-field>
+    <br>
+        <mat-form-field appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input formControlName="nome" matInput [value]="cliente.nome">
+        </mat-form-field> 
+
+        <mat-form-field appearance="outline">
+            <mat-label>Número da carteirinha</mat-label>
+            <input formControlName="numCarteirinha" matInput [value]="cliente.numCarteirinha">
+        </mat-form-field> 
+
+        <mat-form-field appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input formControlName="password" matInput [value]="cliente.password">
+        </mat-form-field> 
+        <mat-form-field appearance="outline">
+            <mat-label>Role</mat-label>
+            <input formControlName="role" matInput [value]="cliente.role">
+        </mat-form-field> 
+
+        <mat-form-field appearance="outline">
+            <mat-label>Categoria</mat-label>
+            <input formControlName="categoria" matInput [value]="cliente.categoria">
+        </mat-form-field> 
+    
+        <div mat-dialog-action [align]="'end'">
+            <button mat-raised-button color="warn" mat-dialog-close="">Voltar</button>
+            <button  style="margin-left: 8px;" (click)="CadastrarClientes()" mat-raised-button color="primary">{{action}}</button>
+          </div>
+    </div>
+    </form>
+
+
+
+

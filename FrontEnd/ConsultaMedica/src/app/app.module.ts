@@ -31,6 +31,7 @@ import { HomeComponent } from './home/home.component';
 import { DialogcategoriaComponent } from './categoria/dialogCategoria/dialogCategoria.component';
 import { DialogMedicoComponent } from './medico/dialogMedico/dialogMedico.component';
 import { DialogClienteComponent } from './cliente/dialogCliente/dialogCliente.component';
+import { DialogLoginComponent } from './login/dialogLogin/dialogLogin.component';
 
 registerLocaleData(localePT);
 
@@ -51,6 +52,7 @@ registerLocaleData(localePT);
     HomeComponent,
     DialogcategoriaComponent,
     DialogMedicoComponent,
+    DialogLoginComponent,
     DialogClienteComponent
   ],
   imports: [

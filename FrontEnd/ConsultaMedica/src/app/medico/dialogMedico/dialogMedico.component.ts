@@ -21,14 +21,9 @@ export class DialogMedicoComponent implements OnInit {
     
   medicos: Array<any> = new Array();
   medico: MedicoModel = new MedicoModel();
-   _isEditar:boolean =false;
-  // crm = this.data.crm;
   medicoForm!:FormGroup;
-
- 
-
+  
   ngOnInit(): void {
-    console.log(this._isEditar)
     this.medicoForm = this.formBuilder.group({
       nome : ['', Validators.required],
       crm : ['', Validators.required]
@@ -40,7 +35,6 @@ export class DialogMedicoComponent implements OnInit {
       this.medicoForm.controls['nome'].setValue(this.editdata.nome);
       this.medicoForm.controls['crm'].setValue(this.editdata.crm);
     }
-
   }
   
   listarMedicos(){
@@ -84,6 +78,7 @@ export class DialogMedicoComponent implements OnInit {
         })
     
     }else{
+      
       this.medico.crm = this.medicoForm.value.crm ;
       this.medico.nome = this.medicoForm.value.nome;
 

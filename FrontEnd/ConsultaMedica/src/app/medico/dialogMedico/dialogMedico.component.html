@@ -1,7 +1,5 @@
 <form [formGroup]="medicoForm">
-
-<h1 mat-dialog-title *ngIf="!_isEditar">{{action}} Médico</h1>
-<h1 mat-dialog-title *ngIf="_isEditar">{{action}} Médico</h1>
+<h1 mat-dialog-title >{{action}} Médico</h1>
 <div mat-dialog-content>
     <mat-form-field  appearance="outline" ng-disabled =>
         <mat-label>CRM</mat-label>

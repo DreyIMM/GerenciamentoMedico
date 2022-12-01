@@ -17,7 +17,7 @@ export class CategoriaService {
       return this.http.get(`${API_PATH}categorias`,this.login.getOptions());
     }
 
-    CadastrarCategoria(categoria: CategoriaModel): Observable<any> {
+    CadastrarCategorias(categoria: CategoriaModel): Observable<any> {
       return this.http.post(`${API_PATH}categoria`, categoria, this.login.getOptions());
     }    
 
@@ -25,7 +25,7 @@ export class CategoriaService {
       return this.http.delete(`${API_PATH}categoria/${id}`, this.login.getOptions());
     } 
 
-    atualizarCategoria(id:any, categoria: CategoriaModel): Observable<any>{
+    AtualizarCategorias(id:any, categoria: CategoriaModel): Observable<any>{
       return this.http.put(`${API_PATH}categoria/${id}`,categoria, this.login.getOptions());
     }
    

@@ -44,9 +44,7 @@ public class MedicoService {
 		return medicoRepository.existsById(crm);
 	}
 
-	public  Optional<Medico> Medico(Long crm){
-		return medicoRepository.findById(crm);
-	}
+	
 	
 
 	

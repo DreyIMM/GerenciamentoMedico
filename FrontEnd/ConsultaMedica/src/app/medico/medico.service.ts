@@ -29,4 +29,8 @@ export class MedicoService {
     return this.http.put(`${API_PATH}medico/${id}`, medico, this.login.getOptions());
   }
 
+  listarCategorias(): Observable<any> {
+    return this.http.get(`${API_PATH}categorias`,this.login.getOptions());
+  }
+
 }

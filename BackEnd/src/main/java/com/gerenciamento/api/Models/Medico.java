@@ -7,6 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Medico implements Serializable {
@@ -15,13 +18,18 @@ public class Medico implements Serializable {
 	@Id
 	private Long Crm;
 	private String Nome;
+
+	@NotNull
+	@ManyToOne
+ 	@JoinColumn(name = "categoriaPlano_id")
+	private Categoria Categoria;
 	
 	public Medico() {}
 	
-	public Medico(Long crm, String nome) {
+	public Medico(Long crm, String nome, Categoria categoria) {
 		Crm =  crm;
 		Nome = nome;
-		
+		Categoria = categoria;
 	}
 
 
@@ -40,6 +48,15 @@ public class Medico implements Serializable {
 	public void setNome(String nome) {
 		Nome = nome;
 	}
+	
+	public Categoria getCategoria() {
+		return Categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		Categoria = categoria;
+	}
+
 
 	@Override
 	public int hashCode() {

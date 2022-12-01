@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoriaModel } from '../categoria/categoria.models';
 import { MedicoModel } from './medico.models';
 import { MedicoService } from './medico.service';
 import { MatDialog} from '@angular/material/dialog';
@@ -17,6 +18,8 @@ export class MedicoComponent implements OnInit {
 
   medico: MedicoModel = new MedicoModel();
   medicos: Array<any> = new Array();
+  categorias: Array<CategoriaModel> = new Array();
+
   isEditar:boolean=false;
   crm:number =10;
   dados:any;
@@ -25,6 +28,7 @@ export class MedicoComponent implements OnInit {
 
   ngOnInit(): void {
     this.listarMedicos();
+    this.listarCategoria();
   }
 
   openDialog(dados:any){
@@ -46,12 +50,12 @@ export class MedicoComponent implements OnInit {
     })
   }
 
-
-  atualizarMedicos(id:number){
-    this.medicoService.atualizarMedicos(id, this.medico).subscribe(medico =>{
-      this.medico = new MedicoModel();
-      this.listarMedicos();
-      this.aoSalvarFechar();
+  CadastrarMedicos(){
+    console.log(this.medico);
+    this.medicoService.CadastrarMedicos(this.medico).subscribe(medico =>{
+    this.medico = new MedicoModel();
+    this.listarMedicos();
+    this.aoSalvarFechar();
     }, err =>{
       console.log('Error ao editar um médico', err)
     })
@@ -72,5 +76,14 @@ export class MedicoComponent implements OnInit {
     })
   }
 
+  listarCategoria(){
+    this.medicoService.listarCategorias().subscribe(categorias =>{
+      this.categorias = categorias;
+    }, err=>{
+      console.log("Erro ao listar as categorias", err);
+    })
+  }
+
+ 
 
 }

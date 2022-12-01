@@ -22,7 +22,7 @@
     
     <mat-form-field appearance="outline">
       <mat-label>Escolha o dia</mat-label>
-      <input (ngModelChange)="dataSelect($event)" id="Data" formControlName="data" matInput [matDatepicker]="picker">
+      <input (ngModelChange)="dataSelect($event)" id="Data" formControlName="data" matInput [min]="minDate"  [matDatepicker]="picker">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>

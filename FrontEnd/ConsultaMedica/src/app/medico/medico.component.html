@@ -13,6 +13,7 @@
                       <tr>
                         <th scope="col">CRM</th>
                         <th scope="col">Nome</th>
+                        <th scope="col">Plano</th>
                         <th scope="col">Ações</th>
                       </tr>
                     </thead>
@@ -20,6 +21,7 @@
                       <tr *ngFor="let medico of medicos">
                         <td>{{medico.crm}}</td>
                         <td>{{medico.nome}}</td>
+                        <td>{{medico.categoria.nome}}</td>
                         <td>
                           <button mat-icon-button color="primary" (click)="openDialog(medico)">
                             <mat-icon>edit</mat-icon>
@@ -36,7 +38,38 @@
     </div>
 </div>
 
+<!-- Modal Adicionar -->
+<div class="modal fade" id="CadastrarPlano" tabindex="-1" role="dialog" aria-labelledby="CadastrarPlano" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Novo Médico</h5>
+        <button type="button" class="btn-close" data-dismiss="modal">
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            
+            <div class="col">
+              <input type="number" name="crm" class="form-control m-2" placeholder="CRM" [(ngModel)]="medico.crm">
 
+              <input type="text" name="name" class="form-control m-2" placeholder="Nome" [(ngModel)]="medico.nome">
 
+              <select [(ngModel)]="medico.categoria.id" class="form-select form-control m-2" aria-label="Plano aceito">
+                <option *ngFor="let categoria of categorias" [value]="categoria.id">       
+                    {{categoria.nome}}
+                </option>
+              </select>
 
-<!-- <ng-container matColumnDef="CRM" -->
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="voltar" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
+        <button type="button" class="btn btn-primary" (click)="CadastrarMedicos()">Cadastrar</button>
+      </div>
+    </div>
+  </div>
+</div>

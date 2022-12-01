@@ -3,6 +3,7 @@ import { Cliente } from './cliente';
 import { ClienteService } from './cliente.service';
 import { MatDialog } from '@angular/material/dialog'; 
 import { DialogClienteComponent } from './dialogCliente/dialogCliente.component';
+import { CategoriaModel } from '../categoria/categoria.models';
 
 @Component({
   selector: 'app-cliente',
@@ -13,14 +14,16 @@ export class ClienteComponent implements OnInit {
 
   cliente: Cliente = new Cliente;
   clientes: Cliente[] = [];
+  categorias: Array<CategoriaModel> = new Array();
   
-  id:number = 0;
+  
   dados: any;
 
   constructor(private clienteService: ClienteService, public dialog:MatDialog) { }
 
   ngOnInit(): void {
     this.listarClientes();
+    this.listarCategoria();
   }
   
   openDialog(dados:any) {
@@ -35,10 +38,11 @@ CadastrarClientes(){
   console.log(this.cliente);
   this.clienteService.CadastrarClientes(this.cliente).subscribe(cliente =>{
   this.cliente = new Cliente();
+  this.cliente.role = 'USER';
   this.listarClientes();
   this.aoSalvarFechar();
   }, err =>{
-    console.log('Error ao editar o cliente', err)
+    console.log('Error ao cadastrar o cliente', err)
   })
 }
 
@@ -53,6 +57,14 @@ CadastrarClientes(){
   aoSalvarFechar(){
     let ref= document.getElementById('voltar');
     ref?.click()
+  }
+
+  listarCategoria(){
+    this.clienteService.listarCategorias().subscribe(categorias =>{
+      this.categorias = categorias;
+    }, err=>{
+      console.log("Erro ao listar as categorias", err);
+    })
   }
 
 }

@@ -18,7 +18,11 @@ export class ClienteService {
   }
 
   CadastrarClientes(cliente: Cliente): Observable<any> {
-    return this.http.post(`${API_PATH}cliente`, cliente, this.login.getOptions());
+    return this.http.post(`${API_PATH}cliente`, cliente);
   } 
+
+  listarCategorias(): Observable<any> {
+    return this.http.get(`${API_PATH}categorias`,this.login.getOptions());
+  }
   
 }

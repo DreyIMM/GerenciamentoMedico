@@ -12,9 +12,6 @@ import { DialogcategoriaComponent } from './dialogCategoria/dialogCategoria.comp
 })
 export class CategoriaComponent implements OnInit {
 
-
-
-
   categoria: CategoriaModel= new CategoriaModel;
   categorias: Array<any> = new Array();
   

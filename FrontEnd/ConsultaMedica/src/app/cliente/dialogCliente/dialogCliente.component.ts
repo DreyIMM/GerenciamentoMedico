@@ -33,16 +33,6 @@ export class DialogClienteComponent {
           categoria: ['', Validators.required]
         });
         console.log(this.editdata);
-     
-        if(this.editdata.id > 0){
-          this.action="Atualizar"
-          this.clienteForm.controls['id'].setValue(this.editdata.id);
-          this.clienteForm.controls['nome'].setValue(this.editdata.nome);
-          this.clienteForm.controls['numCarteirinha'].setValue(this.editdata.numCarteirinha);
-          this.clienteForm.controls['password'].setValue(this.editdata.password);
-          this.clienteForm.controls['role'].setValue(this.editdata.role);
-          this.clienteForm.controls['categoria'].setValue(this.editdata.categoria);
-        }
       }
     
 
@@ -55,40 +45,21 @@ export class DialogClienteComponent {
         })
       }
       CadastrarClientes(){
-        if(this.editdata.id == 0){
-          this.cliente.id = this.clienteForm.value.id ;
-          this.cliente.nome = this.clienteForm.value.nome;
-          this.cliente.numCarteirinha = this.clienteForm.value.numCarteirinha;
-          this.cliente.password = this.clienteForm.value.password;
-          this.cliente.role = this.clienteForm.value.role;
-          this.cliente.categoria = this.clienteForm.value.categoria;
-          
-    
-          this.clienteService.CadastrarClientes(this.cliente).subscribe(cliente =>{
-            this.cliente = new Cliente();
-            this.listarClientes();
-            this.clienteForm.reset();
-            this.dialogRef.close();
-            }, err =>{
-              console.log('Error ao cadastrar um plano', err) 
-            })
-        
-        }else{
-          console.log('Error ao adicionar um cliente')
-          /*
-          this.cliente.id = this.clienteForm.value.id;
-          this.cliente.nome = this.clienteForm.value.nome;
-    
-          this.clienteService.AtualizarClientes(this.cliente.id, this.cliente).subscribe(cliente =>{
-            this.cliente = new Cliente();
-            this.listarClientes();
-            this.clienteForm.reset();
-            this.dialogRef.close();
+        this.cliente.id = this.clienteForm.value.id ;
+        this.cliente.nome = this.clienteForm.value.nome;
+  
+        this.clienteService.CadastrarClientes(this.cliente).subscribe(cliente =>{
+          this.cliente= new Cliente();
+          this.listarClientes();
+          this.clienteForm.reset();
+          this.dialogRef.close();
           }, err =>{
-            console.log('Error ao editar um plano', err)
+            console.log('Error ao cadastrar um cliente', err) 
           })
-    */
-        }
+      }
+      aoSalvarFechar(){
+        let ref= document.getElementById('voltar');
+        ref?.click()
       }
 
 

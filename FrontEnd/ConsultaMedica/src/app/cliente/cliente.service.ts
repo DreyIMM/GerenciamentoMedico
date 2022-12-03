@@ -22,7 +22,6 @@ export class ClienteService {
   } 
 
   listarCategorias(): Observable<any> {
-    return this.http.get(`${API_PATH}categorias`,this.login.getOptions());
+    return this.http.get(`${API_PATH}categorias`);
   }
-  
 }

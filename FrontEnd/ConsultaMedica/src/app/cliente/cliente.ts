@@ -4,7 +4,7 @@ export class Cliente{
     id:number;
     nome: string;
     numCarteirinha: number;
-    password: string;
+    senha: string;
     role: string;
     categoria: CategoriaModel;
 
@@ -13,7 +13,7 @@ export class Cliente{
         this.id = 0,
         this.nome = '',
         this.numCarteirinha = 0,
-        this.password = '',
+        this.senha = '',
         this.role = '',
         this.categoria = new CategoriaModel()
     }

@@ -18,14 +18,17 @@
 
         <mat-form-field appearance="outline">
             <mat-label>Senha</mat-label>
-            <input formControlName="password" matInput [value]="cliente.password">
+            <input formControlName="senha" matInput [value]="cliente.senha">
         </mat-form-field> 
        
-
         <mat-form-field appearance="outline">
-            <mat-label>Plano de saúde</mat-label>
-            <input formControlName="categoria" matInput [value]="cliente.categoria">
-        </mat-form-field> 
+            <mat-label>Plano de saude</mat-label>
+            <mat-select id="Plano" formControlName="categoria">
+              <mat-option *ngFor="let categoria of categoria" [value]="categoria.id">
+                  {{categoria.nome}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
     
         <div mat-dialog-action [align]="'end'">
             <button mat-raised-button color="warn" mat-dialog-close="">Voltar</button>

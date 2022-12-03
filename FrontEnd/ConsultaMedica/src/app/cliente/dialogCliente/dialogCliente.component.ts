@@ -1,6 +1,7 @@
 import { Component, Inject } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { CategoriaModel } from "src/app/categoria/categoria.models";
 import { Cliente } from "../cliente";
 import { ClienteComponent } from "../cliente.component";
 import { ClienteService } from "../cliente.service";
@@ -12,27 +13,31 @@ import { ClienteService } from "../cliente.service";
 
 
 export class DialogClienteComponent {
-  action:string = "Cadastrar"
+  action:string = "Cadastrar";
+  
     constructor(
         private clienteService:ClienteService, 
         private dialogRef: MatDialogRef<DialogClienteComponent>,
         @Inject(MAT_DIALOG_DATA)public editdata:any,
         private formBuilder:FormBuilder,
         ){ }
+
       cliente: Cliente = new Cliente;  
       clientes: Cliente[] = []
       clienteForm!: FormGroup;
+
+      categoria: Array<CategoriaModel> = new Array();
 
       ngOnInit(): void {
         this.clienteForm = this.formBuilder.group({
           id: ['', Validators.required],
           nome: ['', Validators.required],
           numCarteirinha: ['', Validators.required],
-          password: ['', Validators.required],
+          senha: ['', Validators.required],
           role: ['', Validators.required],
           categoria: ['', Validators.required]
         });
-        console.log(this.editdata);
+        this.listarCategorias();
       }
     
 
@@ -43,11 +48,18 @@ export class DialogClienteComponent {
         }, err =>{
           console.log("não foi possivel listar os clientes", err)
         })
-      }
+    }
+
       CadastrarClientes(){
-        this.cliente.id = this.clienteForm.value.id ;
         this.cliente.nome = this.clienteForm.value.nome;
-  
+        this.cliente.numCarteirinha = this.clienteForm.value.numCarteirinha;
+        this.cliente.senha = this.clienteForm.value.senha;
+        this.cliente.role = "USER";
+        this.cliente.categoria.id   = this.clienteForm.value.categoria;
+        console.log(this.cliente);
+        
+        debugger
+
         this.clienteService.CadastrarClientes(this.cliente).subscribe(cliente =>{
           this.cliente= new Cliente();
           this.listarClientes();
@@ -62,6 +74,12 @@ export class DialogClienteComponent {
         ref?.click()
       }
 
-
+      listarCategorias(){
+        this.clienteService.listarCategorias().subscribe(cli =>{
+          this.categoria = cli;
+        }, err=>{
+          console.log("Erro as categorias", err);
+        })
+      }
 
 }

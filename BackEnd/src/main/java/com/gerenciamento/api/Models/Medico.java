@@ -1,10 +1,6 @@
 package com.gerenciamento.api.Models;
 
-import java.io.Serializable;
 import java.util.Objects;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -12,13 +8,11 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Medico implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class Medico extends Usuario {
 
-	@Id
+	@NotNull
 	private Long Crm;
-	private String Nome;
-
+	
 	@NotNull
 	@ManyToOne
  	@JoinColumn(name = "categoriaPlano_id")
@@ -26,9 +20,9 @@ public class Medico implements Serializable {
 	
 	public Medico() {}
 	
-	public Medico(Long crm, String nome, Categoria categoria) {
+	public Medico(Long id, String username, String password, String role,String nome, Long crm, Categoria categoria){
+		super(id, username, password, role, nome);
 		Crm =  crm;
-		Nome = nome;
 		Categoria = categoria;
 	}
 
@@ -39,14 +33,6 @@ public class Medico implements Serializable {
 
 	public void setCrm(Long crm) {
 		Crm = crm;
-	}
-
-	public String getNome() {
-		return Nome;
-	}
-
-	public void setNome(String nome) {
-		Nome = nome;
 	}
 	
 	public Categoria getCategoria() {

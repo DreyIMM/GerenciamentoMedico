@@ -34,9 +34,10 @@ export class LoginComponent implements OnInit {
       this.sucessMessage = 'Login com sucesso';
       this.route.navigate(['/home'])
       //criar um component com a principal (retirar do app)
-    }, () =>{
+    },err =>{
       this.invalidLogin = true;
       this.loginSucess = false; 
+      console.log(err);
     });
   }
 

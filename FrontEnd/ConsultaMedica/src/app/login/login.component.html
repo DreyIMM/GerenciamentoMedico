@@ -12,7 +12,7 @@
           <!-- Login Form -->
           <form>
             <input type="text" id="username" class="fadeIn second" [(ngModel)]="username" name="username" placeholder="usuario">
-            <input type="password" id="password" class="fadeIn third" [(ngModel)]="password" name="password" placeholder="senha">
+            <input type="password" autocomplete="on" id="password" class="fadeIn third" [(ngModel)]="password" name="password" placeholder="senha">
             <input type="submit" (click)=handleLogin() class="fadeIn fourth" value="Acessar">
           </form>
       

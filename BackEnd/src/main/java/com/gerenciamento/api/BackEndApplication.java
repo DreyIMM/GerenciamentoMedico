@@ -64,13 +64,6 @@ public class BackEndApplication implements CommandLineRunner{
 		clienterepository.save(p2);
 		clienterepository.save(p3);
 		clienterepository.save(p4);
-
-		
-		Medico m1 = new Medico(3001L, "Dr Ruberval Mendes", cat1);
-		Medico m2 = new Medico(3002L, "Dr Alan Carvalho", cat2);
-
-		medicoService.save(m1);
-		medicoService.save(m2);
 		
 	}
 

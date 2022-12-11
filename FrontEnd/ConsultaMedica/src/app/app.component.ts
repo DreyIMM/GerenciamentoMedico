@@ -10,9 +10,13 @@ import { LoginserviceService } from './login/loginservice.service';
 export class AppComponent {
   title = 'ConsultaMedica';
 
+  logado: boolean = false;
+
   constructor(public service: LoginserviceService){
   }
 
+  ngOnInit(){
+  }
 
 
 }

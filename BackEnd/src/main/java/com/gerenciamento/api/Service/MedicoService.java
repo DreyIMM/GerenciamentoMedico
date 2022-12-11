@@ -1,16 +1,9 @@
 package com.gerenciamento.api.Service;
 
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
-
 import javax.transaction.Transactional;
-
 import org.springframework.stereotype.Service;
-
-import com.gerenciamento.api.Models.Consulta;
 import com.gerenciamento.api.Models.Medico;
-import com.gerenciamento.api.repository.ConsultaRepository;
 import com.gerenciamento.api.repository.MedicoRepository;
 
 @Service

@@ -8,16 +8,16 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  {path: '/', redirectTo: '/home'},
-  {path :'home', component: HomeComponent},
-  {path: 'medicos', component: MedicoComponent},
-  {path: 'categorias', component: CategoriaComponent},
-  {path: 'clientes', component: ClienteComponent},
-  {path: 'reserva', component: ReservaComponent}
+  {path: "login", component: LoginComponent, pathMatch: 'full'},
+  {path : "home", component: HomeComponent},
+  {path: "medicos", component: MedicoComponent},
+  {path: "categorias", component: CategoriaComponent},
+  {path: "cliente", component: ClienteComponent},
+  {path: "reserva", component: ReservaComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

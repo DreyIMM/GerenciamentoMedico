@@ -39,8 +39,17 @@ export class LoginserviceService {
 
 
   registerSuccessfulLogin(cliente: any) {
-    console.log(cliente);
+    localStorage.setItem('username', this.username)
+    localStorage.setItem('password', this.password);
     this.cliente = cliente;
+  }
+
+  public getUsername(){
+    return localStorage.getItem('username')
+  }
+
+  public getPassword(){
+    return localStorage.getItem('password');
   }
 
   signout = () => {

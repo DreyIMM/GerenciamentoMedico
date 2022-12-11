@@ -1,4 +1,4 @@
-import {HttpClientModule } from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { NgModule,LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -28,10 +28,12 @@ import { registerLocaleData } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { LoginserviceService } from './login/loginservice.service';
 import { HomeComponent } from './home/home.component';
+import { Interceptor } from './interceptor/interceptor';
 
 registerLocaleData(localePT);
 
 
+const serviceAutentica = [Interceptor]
 
 @NgModule({
   declarations: [
@@ -65,7 +67,11 @@ registerLocaleData(localePT);
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [LoginserviceService, { provide: LOCALE_ID, useValue: 'pt-br' },],
+  providers: 
+  [
+    serviceAutentica,
+    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

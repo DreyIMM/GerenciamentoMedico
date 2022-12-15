@@ -29,7 +29,7 @@ public class CustomClienteDetails implements UserDetails {
 
 	@Override
 	public String getPassword() {
-		return cliente.getSenha();
+		return cliente.getPassword();
 	}
 
 	@Override

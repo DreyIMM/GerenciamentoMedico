@@ -13,17 +13,7 @@ import javax.validation.constraints.NotNull;
 import javax.persistence.Id;
 
 @Entity
-public class Cliente implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long Id;
-	
-	@NotNull
-	@Column(unique=true)
-	private String username;
+public class Cliente extends Usuario{	
 	
 	@NotNull
 	@Column(unique=true)
@@ -32,12 +22,6 @@ public class Cliente implements Serializable{
 	@NotNull
 	@Column(unique=true)
 	private int Carteirinha;
-	
-	@NotNull
-	private String password;
-	
-	@NotNull
-	private String Role;	
 
 	@NotNull
 	@ManyToOne
@@ -46,31 +30,14 @@ public class Cliente implements Serializable{
 	
 	public Cliente() { 	}
 	
-	public Cliente(Long id, @NotNull String nome, @NotNull int cpf, @NotNull int carteirinha, @NotNull String senha,
-			String role, com.gerenciamento.api.Models.@NotNull Categoria categoria) {
-		Id = id;
-		username = nome;
+	public Cliente(Long id, @NotNull String nome, @NotNull String username, @NotNull String password ,@NotNull int cpf, @NotNull int carteirinha,
+				   String role, @NotNull Categoria categoria) {
+		super(id, username, password, role, nome);
 		Cpf = cpf;
 		Carteirinha = carteirinha;
-		password = senha;
-		Role = role;
 		Categoria = categoria;
 	}
 	
-	
-	
-	public Long getId() {
-		return Id;
-	}
-	public void setId(Long id) {
-		Id = id;
-	}
-	public String getNome() {
-		return username;
-	}
-	public void setNome(String nome) {
-		username = nome;
-	}
 	public int getCpf() {
 		return Cpf;
 	}
@@ -96,45 +63,6 @@ public class Cliente implements Serializable{
 
 	public void setCarteirinha(int carteirinha) {
 		Carteirinha = carteirinha;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
-	public String getSenha() {
-		return password;
-	}
-
-	public void setSenha(String senha) {
-		password = senha;
-	}
-	
-	public String getRole() {
-		return Role;
-	}
-
-	public void setRole(String role) {
-		Role = role;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(Id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Cliente other = (Cliente) obj;
-		return Objects.equals(Id, other.Id);
-	} 
-	
-	
+	}	
 	
 }

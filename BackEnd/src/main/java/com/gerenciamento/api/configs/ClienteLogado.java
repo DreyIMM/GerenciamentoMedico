@@ -28,7 +28,7 @@ public class ClienteLogado implements UserDetails{
 	
 	@Override
 	public String getPassword() {
-		return cliente.getSenha();
+		return cliente.getPassword();
 	}
 
 	@Override

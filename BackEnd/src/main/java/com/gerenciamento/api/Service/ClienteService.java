@@ -63,7 +63,7 @@ public class ClienteService implements UserDetailsService {
 		      throw new RuntimeException("Usuário já existente!");
 		  }
 
-		  user.setSenha(passwordEncoder().encode(user.getSenha()));
+		  user.setPassword(passwordEncoder().encode(user.getPassword()));
 		  user.setRole("USER");
 		  Cliente createdUser = clienteRepository.save(user);
 		  return createdUser;

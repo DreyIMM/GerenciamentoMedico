@@ -8,4 +8,6 @@ import com.gerenciamento.api.Models.Medico;
 @Repository
 public interface MedicoRepository extends JpaRepository<Medico, Long> {
 	
+	public boolean existsByCrm(Long Crm);
+
 }

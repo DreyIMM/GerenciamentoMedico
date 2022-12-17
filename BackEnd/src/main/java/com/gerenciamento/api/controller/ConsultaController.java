@@ -42,9 +42,11 @@ public class ConsultaController {
 	@PostMapping("/consultas")
 	public ResponseEntity<Object> salvarConsulta(@RequestBody @Valid Consulta consulta){	
 		
-		if( !(_serviceMedico.existsByCrm(consulta.getMedico().getCrm())) ) {
-			return ResponseEntity.status(HttpStatus.CONFLICT).body("CRM do médico não existe ");
-		}
+
+		
+		if( !(_serviceMedico.existsById(consulta.getMedico().getId())) ) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("ID do médico não existe ");
+		}	
 
 		if (_serviceConsulta.existsByData(consulta.getData()) && _serviceConsulta.existsByHoraInicio(consulta.getHoraInicio()) && _serviceConsulta.existsByMedico(consulta.getMedico()) ) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("Médico indisponível nesse horario");

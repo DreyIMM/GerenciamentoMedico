@@ -30,11 +30,13 @@ public class MedicoService {
 	}
 	
 	public boolean existsByCrm(Long crm) {
-		return medicoRepository.existsById(crm);
+		return medicoRepository.existsByCrm(crm);
 	}
 	
+	public boolean existsById(Long id) {
+		return medicoRepository.existsById(id);
+	}
 
-	
-	
+
 
 }

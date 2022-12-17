@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 public class Medico extends Usuario {
 
 	@NotNull
-	private Long Crm;
+	private Long crm;
 	
 	@NotNull
 	@ManyToOne
@@ -22,17 +22,17 @@ public class Medico extends Usuario {
 	
 	public Medico(Long id, String username, String password, String role,String nome, Long crm, Categoria categoria){
 		super(id, username, password, role, nome);
-		Crm =  crm;
+		this.crm =  crm;
 		Categoria = categoria;
 	}
 
 
 	public Long getCrm() {
-		return Crm;
+		return crm;
 	}
 
 	public void setCrm(Long crm) {
-		Crm = crm;
+		this.crm = crm;
 	}
 	
 	public Categoria getCategoria() {
@@ -46,20 +46,9 @@ public class Medico extends Usuario {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(Crm);
+		return Objects.hash(this.crm);
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Medico other = (Medico) obj;
-		return Objects.equals(Crm, other.Crm);
-	}
 	
 	
 }

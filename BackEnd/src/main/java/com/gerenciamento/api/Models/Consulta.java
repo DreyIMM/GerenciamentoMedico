@@ -35,16 +35,29 @@ public class Consulta implements Serializable {
     @Column(name="data", nullable=false)
 	private String data;
 	
+	@Column(name="status")
+	private String status;
+	
+	@Column(name="laudo")
+	private String laudo;
+	
 	@ManyToOne
-	@JoinColumn(name = "medicoCrm", nullable = false)
+	@JoinColumn(name = "medicoId", nullable = false)
 	private Medico medico;
 	
 	@ManyToOne
 	@JoinColumn(name ="pacienteId", nullable = false)
 	private Cliente cliente;
 	
+	public Consulta() {}
 
-
+	public Consulta(Long id, @NotNull String horaInicio, @NotNull String data, Medico medico, Cliente cliente) {
+		Id = id;
+		this.horaInicio = horaInicio;
+		this.data = data;
+		this.medico = medico;
+		this.cliente = cliente;
+	}
 
 	public Long getId() {
 		return Id;
@@ -68,6 +81,22 @@ public class Consulta implements Serializable {
 
 	public void setData(String data) {
 		this.data = data;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	public String getLaudo() {
+		return laudo;
+	}
+
+	public void setLaudo(String laudo) {
+		this.laudo = laudo;
 	}
 
 	public Medico getMedico() {

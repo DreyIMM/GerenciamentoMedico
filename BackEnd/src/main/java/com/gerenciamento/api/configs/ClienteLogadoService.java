@@ -7,17 +7,20 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.gerenciamento.api.Models.Cliente;
+import com.gerenciamento.api.Models.Usuario;
 import com.gerenciamento.api.repository.ClienteRepository;
+import com.gerenciamento.api.repository.UsuarioRepository;
 
 @Service
 public class ClienteLogadoService  implements UserDetailsService {
 
 	@Autowired
-	ClienteRepository cliente;
+	UsuarioRepository usuario;
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Cliente user = cliente.findByUsername(username);
+		
+		Usuario user = usuario.findByUsername(username);
 
 		if(user==null)
 			throw new UsernameNotFoundException("Usuario inexistente");

@@ -38,7 +38,7 @@ public class WebSecurityConfiguration {
 		    .antMatchers(HttpMethod.OPTIONS).permitAll()
 	        .antMatchers("/login/**", "/medicos", "/consultas**" , "/cliente/**").permitAll()
 	        .antMatchers("/").hasAuthority("USER")
-	        .antMatchers("/medico","/clientes/**","/categorias/**", "/categoria/**").hasAuthority("ADMIN")
+	        .antMatchers("/medico","/clientes/**","/categorias/**", "/categoria/**").hasAuthority("USER")
 	        .anyRequest().authenticated()
 	        .and()
 	        .httpBasic();

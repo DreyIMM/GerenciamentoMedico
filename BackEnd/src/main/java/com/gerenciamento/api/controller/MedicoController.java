@@ -42,7 +42,7 @@ public class MedicoController {
 		if(_repository.existsByCrm(novoMedico.getCrm())) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("CRM já vinculado á outro médico");
 		}
-		return ResponseEntity.status(HttpStatus.CREATED).body(_repository.save(novoMedico));
+		return ResponseEntity.status(HttpStatus.CREATED).body(_repository.execute(novoMedico));
 	}
 
 	@DeleteMapping("/medico/{id}")

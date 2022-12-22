@@ -25,9 +25,10 @@ public class ClienteService implements UserDetailsService {
 	
 	
 	final ClienteRepository clienteRepository;
+	
 	private BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
-	  }
+	}
 	
 	public ClienteService(ClienteRepository clienteRepository) {
 		this.clienteRepository = clienteRepository;
@@ -51,7 +52,7 @@ public class ClienteService implements UserDetailsService {
 
 		Cliente cliente = clienteRepository.findByUsername(username);
 		if(cliente == null) {
-			throw new UsernameNotFoundException("Paciente não localizado");
+			throw new UsernameNotFoundException("Usuario não localizado");
 		}
 		return new CustomClienteDetails(cliente);
 	}

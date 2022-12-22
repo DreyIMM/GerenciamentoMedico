@@ -8,32 +8,34 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.gerenciamento.api.Models.Cliente;
+import com.gerenciamento.api.Models.Usuario;
+
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 
 public class ClienteLogado implements UserDetails{
 	private static final long serialVersionUID = 1L;
 
-	private Cliente cliente ;
+	private Usuario usuario ;
 	
-	public ClienteLogado(Cliente cli) {
+	public ClienteLogado(Usuario cli) {
 		super();
-		this.cliente = cli;
+		usuario = cli;
 	}
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return Collections.singleton(new SimpleGrantedAuthority(cliente.getRole()));
+		return Collections.singleton(new SimpleGrantedAuthority(usuario.getRole()));
 	}
 	
 	@Override
 	public String getPassword() {
-		return cliente.getPassword();
+		return usuario.getPassword();
 	}
 
 	@Override
 	public String getUsername() {
-		return cliente.getNome();
+		return usuario.getNome();
 	}
 
 	@Override

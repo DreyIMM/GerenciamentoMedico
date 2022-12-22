@@ -9,32 +9,33 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import com.gerenciamento.api.Models.Cliente;
+import com.gerenciamento.api.Models.Usuario;
 
 @Component
 public class CustomClienteDetails implements UserDetails {
 
-	private Cliente cliente;
+	private Usuario usuario;
 	
 	public CustomClienteDetails() {}
 	
-	public CustomClienteDetails(Cliente cliente) {
+	public CustomClienteDetails(Usuario usuario) {
 		super();
-		this.cliente = cliente;
+		this.usuario = usuario;
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return Collections.singleton(new SimpleGrantedAuthority(cliente.getRole()));
+		return Collections.singleton(new SimpleGrantedAuthority(usuario.getRole()));
 	}
 
 	@Override
 	public String getPassword() {
-		return cliente.getPassword();
+		return usuario.getPassword();
 	}
 
 	@Override
 	public String getUsername() {
-		return cliente.getNome();
+		return usuario.getNome();
 	}
 
 	@Override

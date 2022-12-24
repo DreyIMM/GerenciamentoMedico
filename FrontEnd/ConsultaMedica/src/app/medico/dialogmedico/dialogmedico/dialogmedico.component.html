@@ -1,0 +1,44 @@
+<h1 mat-dialog-title>Cadastrar medicos</h1>
+<form class="example-form" [formGroup]="medicoForm">
+  <div mat-dialog-content>
+  
+    <mat-form-field  appearance="fill">
+      <mat-label>Username</mat-label>
+      <input  type="text" matInput formControlName="username">
+    </mat-form-field>
+
+    <mat-form-field  appearance="fill">
+        <mat-label>Nome</mat-label>
+          <input type="text" matInput formControlName="nome">
+    </mat-form-field>
+
+    <mat-form-field  appearance="fill">
+        <mat-label>Password</mat-label>
+          <input type="password" matInput formControlName="password">
+    </mat-form-field>
+
+    <mat-form-field  appearance="fill">
+        <mat-label>Role</mat-label>
+          <input type="text" matInput formControlName="role">
+    </mat-form-field>
+
+    <mat-form-field  appearance="fill">
+        <mat-label>Crm</mat-label>
+          <input type="number" matInput formControlName="crm">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Plano de saúde</mat-label>
+      <mat-select id="Categoria" formControlName="categoria">
+        <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
+            {{categoria.nome}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </div>
+  <div mat-dialog-action [align]="'center'">
+    <button mat-raised-button color="warn" mat-dialog-close="">Fechar</button>
+    <button style="margin-left: 8px;" (click)="addReserva()" mat-raised-button color="primary">Cadastrar</button>
+  </div>
+</form>

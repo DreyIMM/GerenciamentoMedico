@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Medico extends Usuario {
 
+	private static final long serialVersionUID = 1L;
+
 	@NotNull
 	private Long crm;
 	

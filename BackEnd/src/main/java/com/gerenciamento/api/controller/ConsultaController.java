@@ -23,6 +23,7 @@ import com.gerenciamento.api.Service.MedicoService;
 import com.gerenciamento.api.Models.Cliente;
 import com.gerenciamento.api.Models.Consulta;
 import com.gerenciamento.api.Models.Medico;
+import com.gerenciamento.api.Models.Usuario;
 import com.gerenciamento.api.repository.MedicoRepository;
 
 
@@ -74,7 +75,7 @@ public class ConsultaController {
 	
 	
 	@GetMapping("consultas/{id}/{data}")
-	public ResponseEntity<List<String>> findHorarioDisponivel(@PathVariable Medico id, @PathVariable String data ){
+	public ResponseEntity<List<String>> findHorarioDisponivel(@PathVariable Usuario id, @PathVariable String data ){
 		
 		List<String> lista = _serviceConsulta.findByHorarioFetchData(id, data);
 		

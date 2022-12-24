@@ -49,14 +49,7 @@ public class BackEndApplication implements CommandLineRunner{
 	
 	@Override
 	public void run(String... args) throws Exception {
-		Categoria cat1 = new Categoria(null, "Unimed");
-
-		Cliente p1 = new Cliente(null, "Admin", "Dreys", "$2a$12$I0Ag1rk5SNxXSD/sCF5ti.13uQLwFnM8pNIctbyEJ4rkQCx9jB232",159053948, 3213,  "ADMIN",cat1);
-	
-		categoriarepository.save(cat1);
 		
-		clienterepository.save(p1);
-
 		
 	}
 

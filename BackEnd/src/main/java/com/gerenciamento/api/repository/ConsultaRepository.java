@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import com.gerenciamento.api.Models.Cliente;
 import com.gerenciamento.api.Models.Consulta;
 import com.gerenciamento.api.Models.Medico;
+import com.gerenciamento.api.Models.Usuario;
+
 import java.util.List;
 
 @Repository
@@ -22,7 +24,7 @@ public interface ConsultaRepository extends JpaRepository<Consulta, Long> {
 	List <Consulta> findByConsulta(@Param("id") Cliente id);
 	
 	@Query("SELECT u.horaInicio FROM Consulta u WHERE u.medico = :medicoId and u.data = :data")
-	List <String> findByHorarioFetchData(@Param("medicoId") Medico id, @Param("data") String data);
+	List <String> findByHorarioFetchData(@Param("medicoId") Usuario id, @Param("data") String data);
 
 	 
 }

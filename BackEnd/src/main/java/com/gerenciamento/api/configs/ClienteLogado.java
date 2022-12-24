@@ -18,9 +18,9 @@ public class ClienteLogado implements UserDetails{
 
 	private Usuario usuario ;
 	
-	public ClienteLogado(Usuario cli) {
+	public ClienteLogado(Usuario user) {
 		super();
-		usuario = cli;
+		usuario = user;
 	}
 	
 	@Override
@@ -35,7 +35,7 @@ public class ClienteLogado implements UserDetails{
 
 	@Override
 	public String getUsername() {
-		return usuario.getNome();
+		return usuario.getUsername();
 	}
 
 	@Override

@@ -8,6 +8,8 @@ import javax.transaction.Transactional;
 import javax.xml.crypto.Data;
 
 import com.gerenciamento.api.Models.Medico;
+import com.gerenciamento.api.Models.Usuario;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,7 +57,7 @@ public class ConsultaService {
 		return consultaRepository.existsByHoraInicio(horaInicio);
 	}
 	
-	public List<String> findByHorarioFetchData(Medico id, String data){
+	public List<String> findByHorarioFetchData(Usuario id, String data){
 		return consultaRepository.findByHorarioFetchData(id, data);
 		
 	}

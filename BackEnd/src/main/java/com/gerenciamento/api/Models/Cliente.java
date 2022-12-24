@@ -9,6 +9,8 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Cliente extends Usuario{	
 	
+	private static final long serialVersionUID = 1L;
+
 	@NotNull
 	@Column(unique=true)
 	private int Cpf;

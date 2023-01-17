@@ -25,10 +25,6 @@ export class MedicoService {
     return this.http.delete(`${API_PATH}medico/${id}`, this.login.getOptions());
   } 
 
-  atualizarMedicos(id:any, medico: MedicoModel): Observable<any>{
-    return this.http.put(`${API_PATH}medico/${id}`, medico);
-  }
-
   listarCategorias(): Observable<any> {
     return this.http.get(`${API_PATH}categorias`,this.login.getOptions());
   }

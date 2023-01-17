@@ -32,12 +32,30 @@ export class MedicoComponent implements OnInit {
     
   }
 
+  editarMedico(row :any){
+    this.dialog.open(DialogmedicoComponent,{
+      width: '30%',
+      data: row
+    }).afterClosed().subscribe(()=>{
+      this.listarMedicos()
+    })
+  }
 
   listarMedicos(){
     this.medicoService.listarMedicos().subscribe(medicos =>{
         this.medicos = medicos;
     }, err=>{
       console.log("Erro ao listar os medicos", err);
+    })
+  }
+
+  excluirMedico(id: number){
+    this.medicoService.excluirMedico(id).subscribe(()=>{
+      alert("Medico excluído")
+      this.listarMedicos();
+
+    }, err=>{
+      console.log("Erro ", err.message)
     })
   }
 

@@ -16,5 +16,10 @@ export class ClienteService {
   listarClientes(): Observable<Cliente[]> {
     return this.http.get<Cliente[]>(`${API_PATH}clientes`, this.login.getOptions());
   }
+
+  excluirCliente(id: number){
+    return this.http.delete(`${API_PATH}cliente/${id}`, this.login.getOptions());
+  }
+
   
 }

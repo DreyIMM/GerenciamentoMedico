@@ -11,6 +11,7 @@
                       <tr>
                         <th scope="col">CRM</th>
                         <th scope="col">Nome</th>
+                        <th scope="col">Username</th>
                         <th scope="col">Plano</th>
                         <th scope="col">Ações</th>
                       </tr>
@@ -19,13 +20,14 @@
                       <tr *ngFor="let medico of medicos">
                         <td>{{medico.crm}}</td>
                         <td>{{medico.nome}}</td>
+                        <td>{{medico.username}}</td>
                         <td>{{medico.categoria.nome}}</td>
                         <td>
-                          <button mat-icon-button color="primary" data-toggle="modal" data-target="#editarPlano">
+                          <button (click)="editarMedico(medico)" mat-icon-button color="primary" data-toggle="modal" data-target="#editarPlano">
                             <mat-icon>edit</mat-icon>
                           </button>
                           <button mat-icon-button color="warn" >
-                            <mat-icon >delete</mat-icon>
+                            <mat-icon (click)="excluirMedico(medico.id)">delete</mat-icon>
                           </button>
                         </td>
                       </tr>

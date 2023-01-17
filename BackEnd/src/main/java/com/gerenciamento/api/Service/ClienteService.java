@@ -46,6 +46,14 @@ public class ClienteService implements UserDetailsService {
 	public boolean existsByCrm(Long crm) {
 		return clienteRepository.existsById(crm);
 	}
+	
+	public Optional<Cliente> findById(Long id) {
+		return clienteRepository.findById(id);
+	}
+	
+	public void excluir(Long id) {		
+		clienteRepository.deleteById(id);
+	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -65,7 +73,6 @@ public class ClienteService implements UserDetailsService {
 		  }
 
 		  user.setPassword(passwordEncoder().encode(user.getPassword()));
-		  user.setRole("USER");
 		  Cliente createdUser = clienteRepository.save(user);
 		  return createdUser;
 	  }

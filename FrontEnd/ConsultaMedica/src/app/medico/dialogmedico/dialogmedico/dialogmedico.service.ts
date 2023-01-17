@@ -22,5 +22,9 @@ export class DialogmedicoService {
     return this.http.get<CategoriaModel[]>(`${API_PATH}categorias`,this.login.getOptions());
   }
 
+  atualizarMedicos(id:any, medico: MedicoModel): Observable<any>{
+    return this.http.put(`${API_PATH}medico/${id}`, medico);
+  }
+
 
 }

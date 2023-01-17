@@ -14,7 +14,7 @@
     <mat-form-field appearance="outline">
       <mat-label>Medico</mat-label>
       <mat-select id="Medico" formControlName="medico"  (ngModelChange)="medicoSelect($event)">
-        <mat-option  *ngFor="let medico of medicos" [value]="medico.crm">
+        <mat-option  *ngFor="let medico of medicos" [value]="medico.id">
             {{medico.nome}}
         </mat-option>
       </mat-select>

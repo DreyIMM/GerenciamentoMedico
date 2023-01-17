@@ -1,6 +1,8 @@
 package com.gerenciamento.api.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.springframework.security.core.userdetails.UserDetails;
@@ -50,6 +52,10 @@ public class MedicoService implements UserDetailsService {
 		return medicoRepository.existsById(id);
 	}
 	
+	public Optional<Medico> findById(Long id) {
+		return medicoRepository.findById(id);
+	}
+	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -72,7 +78,5 @@ public class MedicoService implements UserDetailsService {
 		  Medico createdUser = medicoRepository.save(user);
 		  return createdUser;
 	  }
-
-
 
 }

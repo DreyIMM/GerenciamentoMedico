@@ -30,6 +30,7 @@ import { LoginserviceService } from './login/loginservice.service';
 import { HomeComponent } from './home/home.component';
 import { Interceptor } from './interceptor/interceptor';
 import { DialogmedicoComponent } from './medico/dialogmedico/dialogmedico/dialogmedico.component';
+import { DialogclienteComponent } from './cliente/dialogcliente/dialogcliente.component';
 
 registerLocaleData(localePT);
 
@@ -49,7 +50,8 @@ const serviceAutentica = [Interceptor]
     DialogreservaComponent,
     LoginComponent,
     HomeComponent,
-    DialogmedicoComponent
+    DialogmedicoComponent,
+    DialogclienteComponent
   ],
   imports: [
     BrowserModule,

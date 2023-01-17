@@ -59,7 +59,6 @@ public class ConsultaService {
 	
 	public List<String> findByHorarioFetchData(Usuario id, String data){
 		return consultaRepository.findByHorarioFetchData(id, data);
-		
 	}
 
 }

@@ -1,8 +1,8 @@
-<h1 mat-dialog-title>{{actionBtn}} medicos</h1>
-<form class="example-form" [formGroup]="medicoForm">
+<h1 mat-dialog-title>{{actionBtn}} Paciente</h1>
+<form class="example-form" [formGroup]="clienteForm">
   <div mat-dialog-content>
   
-    <input  type="text" matInput formControlName="id" class="id_hidden">
+    <input type="text" matInput formControlName="id" class="id_hidden">
 
     <mat-form-field  appearance="fill">
         <mat-label>Nome</mat-label>
@@ -25,13 +25,18 @@
     </mat-form-field>
 
     <mat-form-field  appearance="fill">
-        <mat-label>Crm</mat-label>
-          <input type="number" matInput formControlName="crm">
+        <mat-label>Numero Carteirinha</mat-label>
+          <input type="number" matInput formControlName="numCarteirinha">
     </mat-form-field>
+
+    <mat-form-field  appearance="fill">
+      <mat-label>CPF</mat-label>
+        <input type="number" matInput formControlName="cpf">
+  </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Plano de saúde</mat-label>
-      <mat-select formControlName="categoria">
+      <mat-select id="Categoria" formControlName="categoria">
         <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
             {{categoria.nome}}
         </mat-option>
@@ -41,6 +46,6 @@
   </div>
   <div mat-dialog-action [align]="'center'">
     <button mat-raised-button color="warn" mat-dialog-close="">Fechar</button>
-    <button style="margin-left: 8px;" (click)="Medico()" mat-raised-button color="primary">{{actionBtn}}</button>
+    <button style="margin-left: 8px;" (click)="cliente()" mat-raised-button color="primary">{{actionBtn}}</button>
   </div>
 </form>

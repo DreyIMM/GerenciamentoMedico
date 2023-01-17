@@ -1,6 +1,8 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Pacientes</h1>
+  <h1 class="h3 mb-0 text-gray-800">Pacinte</h1>
+  <button (click)="openDialog()" mat-raised-button color="primary">Cadastro</button>
 </div>
+
 <div class="row">             
     <div class="">
         <div class="card shadow ">
@@ -23,10 +25,10 @@
                         <td>{{cliente.numCarteirinha}}</td>
                         <td>
                           <button mat-icon-button color="primary" data-toggle="modal" data-target="#editarPlano">
-                            <mat-icon>edit</mat-icon>
+                            <mat-icon (click)="editarCliente(cliente)">edit</mat-icon>
                           </button>
                           <button button mat-icon-button color="warn">    
-                            <mat-icon>delete</mat-icon>
+                            <mat-icon (click)="excluirCliente(cliente.id)">delete</mat-icon>
                           </button>
                         </td>
                       </tr>

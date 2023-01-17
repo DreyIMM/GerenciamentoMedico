@@ -36,9 +36,9 @@ public class WebSecurityConfiguration {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 		    .antMatchers(HttpMethod.OPTIONS).permitAll()
-	        .antMatchers("/login/**", "/medicos", "/consultas**" , "/cliente/**").permitAll()
-	        .antMatchers("/").hasAuthority("USER")
-	        .antMatchers("/medico","/clientes/**","/categorias/**", "/categoria/**").hasAuthority("ADMIN")
+	        .antMatchers().hasAnyAuthority("USER", "ADMIN")
+	        .antMatchers("/", "/login/**", "/consultas**", "/medicos" ).permitAll()
+	        .antMatchers("/medico","/clientes/**","/categorias/**", "/categoria/**", "/cliente/**").hasAuthority("ADMIN")
 	        .anyRequest().authenticated()
 	        .and()
 	        .httpBasic();

@@ -2,6 +2,7 @@ package com.gerenciamento.api.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,6 +45,17 @@ public class MedicoController {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("CRM já vinculado á outro médico");
 		}
 		return ResponseEntity.status(HttpStatus.CREATED).body(_repository.execute(novoMedico));
+	}
+	
+	@PutMapping("/medico/{id}")
+	ResponseEntity<Object> editarMedico(@PathVariable("id") Long id, @RequestBody Medico medicoEditado ){
+		
+	   Optional<Medico> medico = _repository.findById(id);
+		if(medico.isPresent()) {
+			return ResponseEntity.status(HttpStatus.OK).body(_repository.save(medicoEditado));
+		}else{
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("Medico não encontrado");
+		}		
 	}
 
 	@DeleteMapping("/medico/{id}")

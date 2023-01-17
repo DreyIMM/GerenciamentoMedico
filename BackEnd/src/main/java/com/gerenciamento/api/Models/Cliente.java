@@ -53,12 +53,4 @@ public class Cliente extends Usuario{
 		Categoria = categoria;
 	}
 
-	public int getCarteirinha() {
-		return Carteirinha;
-	}
-
-	public void setCarteirinha(int carteirinha) {
-		Carteirinha = carteirinha;
-	}	
-	
 }

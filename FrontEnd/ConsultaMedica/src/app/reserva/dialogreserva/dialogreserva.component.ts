@@ -66,29 +66,31 @@ export class DialogreservaComponent implements OnInit {
   addReserva(){
     this.reserva.cliente.id = this.cliente.role == "ADMIN" ? this.reservaForm.value.cliente : this.cliente.id ;
     this.reserva.data = moment(this.reservaForm.value.data).format("yyy-MM-DD");
-    this.reserva.medico.crm = this.reservaForm.value.medico ;
+    this.reserva.medico.id = this.reservaForm.value.medico ;
     this.reserva.horaInicio = this.reservaForm.value.horaInicio;
     
-    this.DreservaserviceService.cadastrarReserva(this.reserva).subscribe(reserva=>{
+    this.DreservaserviceService.cadastrarReserva(this.reserva).subscribe(()=>{
     this.reservaForm.reset();
     this.dialogRef.close();
     }, err =>{
-      console.log(this.reserva)
       console.log('Erro ao salvar reserva' ,err);
     })
   }
 
   medicoSelect(value: any){
-    this.medico = value;
-    if(!(this.data == '')) this.listarHorarioDisponiveis(this.medico, this.data);
-
-
+    this.medico = value
+    if(!(this.data == '')){
+      this.listarHorarioDisponiveis(this.medico, this.data);
+    }
   }
 
   dataSelect(value:any){
-    this.data = moment(value).format("yyy-MM-DD");
-    this.listarHorarioDisponiveis(this.medico, this.data);
-    this.apresentaHoraio = true;
+    debugger
+    if(!(this.medico == null)){
+      this.data = moment(value).format("yyy-MM-DD");
+      this.listarHorarioDisponiveis(this.medico, this.data);
+      this.apresentaHoraio = true;
+    } 
   }
 
   listarHorarioDisponiveis(medico:any, data:any){
@@ -102,6 +104,5 @@ export class DialogreservaComponent implements OnInit {
         console.log("Erro ao listar os horarios", err);
       })  
   }
-
-
+  
 }

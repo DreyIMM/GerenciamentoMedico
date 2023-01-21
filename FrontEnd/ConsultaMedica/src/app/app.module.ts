@@ -14,7 +14,7 @@ import { SideBarModule } from './side-bar/side-bar.module';
 import { ClienteComponent } from './cliente/cliente.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReservaComponent } from './reserva/reserva.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import {MatDialogModule, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import { DialogreservaComponent } from './reserva/dialogreserva/dialogreserva.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -73,8 +73,7 @@ const serviceAutentica = [Interceptor]
   ],
   providers: 
   [
-    serviceAutentica,
-    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
+    {provide: LOCALE_ID,      useValue: 'pt-BR'    } 
   ],
   bootstrap: [AppComponent]
 })

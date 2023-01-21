@@ -65,10 +65,10 @@ export class DialogreservaComponent implements OnInit {
 
   addReserva(){
     this.reserva.cliente.id = this.cliente.role == "ADMIN" ? this.reservaForm.value.cliente : this.cliente.id ;
-    this.reserva.data = moment(this.reservaForm.value.data).format("yyy-MM-DD");
+    this.reserva.data = moment(this.reservaForm.value.data).format("DD-MM-yyyy");
     this.reserva.medico.id = this.reservaForm.value.medico ;
     this.reserva.horaInicio = this.reservaForm.value.horaInicio;
-    
+  
     this.DreservaserviceService.cadastrarReserva(this.reserva).subscribe(()=>{
     this.reservaForm.reset();
     this.dialogRef.close();
@@ -85,7 +85,6 @@ export class DialogreservaComponent implements OnInit {
   }
 
   dataSelect(value:any){
-    debugger
     if(!(this.medico == null)){
       this.data = moment(value).format("yyy-MM-DD");
       this.listarHorarioDisponiveis(this.medico, this.data);
@@ -103,6 +102,5 @@ export class DialogreservaComponent implements OnInit {
       }, err=>{
         console.log("Erro ao listar os horarios", err);
       })  
-  }
-  
+  }  
 }

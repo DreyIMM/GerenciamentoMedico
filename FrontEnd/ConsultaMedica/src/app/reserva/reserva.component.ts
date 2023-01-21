@@ -37,6 +37,7 @@ export class ReservaComponent implements OnInit {
 
   listarReservas(){
     this.ReservaService.listarTodasReservas().subscribe(reserva =>{
+      console.log(reserva);
       this.reservas = reserva
     }, err =>{
       console.log(err);
